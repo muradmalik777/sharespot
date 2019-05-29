@@ -1,0 +1,182 @@
+@import "variables.scss";
+@import "fonts.scss";
+@import "util.scss";
+
+
+*{
+  box-sizing: border-box !important;
+}
+body{
+  background: $purple-dull !important;
+  font-size: 16px;
+   *{
+     color: #ffffff;
+     font-family: 'jujucase-medium';
+     letter-spacing: 0.05rem;
+   }
+   h1,h2,h3,h4,h5,h6{
+     font-family: 'jujucase-semibold';
+     font-weight: 600;
+   }
+   p{
+     font-family: 'jujucase-medium';
+     font-size: 18px;
+   }
+}
+.full-width{
+  width: 100%;
+}
+.bg-purple-dull{
+  background: $purple-dull !important;
+}
+.bg-purple-bright{
+  background: $purple-bright !important;
+}
+.bg-purple-dark{
+  background: $purple-dark !important;
+}
+.c-green-dull{
+  color: $green-dull !important;
+}
+.c-purple-bright{
+  color: $purple-bright !important;
+}
+.c-green-bright{
+  color: $green-bright !important;
+}
+.c-orange{
+  color: $orange-dull !important;
+}
+.c-orange{
+  color: $orange-dull !important;
+}
+.c-white{
+  color: #ffffff;
+}
+.t-c{
+  text-align: center !important;
+}
+.uppercase{
+  text-transform: uppercase;
+}
+.capitalize{
+  text-transform: capitalize;
+}
+.t-l{
+  text-align: left;
+}
+.t-r{
+  text-align: right;
+}
+.f-l{
+  float: left;
+}
+.f-r{
+  float: right;
+}
+.pointer {
+  cursor: pointer;
+}
+.spacing{
+  padding: 80px;
+}
+
+.para-padding {
+  padding: 25px;
+}
+
+.coins{
+  color: gold;
+  margin-left: 10px;
+}
+
+
+
+// Data Table Styling
+
+.trades-table {
+  .v-table {
+    background-color: $purple-dull;
+    thead tr:first-child, tbody tr:not(:last-child) {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    thead th {
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0px 15px !important;
+    }
+    tbody td {
+      color: rgba(255, 255, 255, 0.5);
+      padding: 15px !important;
+      text-align: left;
+    }
+    tbody tr:hover:not(.v-datatable__expand-row) {
+      background-color: $purple-bright;
+    }
+  }
+}
+
+.v-pagination .v-pagination__navigation {
+  background-color: #73337a !important;
+  .v-icon {
+    color: #fff !important;
+  }
+}
+
+.v-pagination__item {
+  background-color: #73337a !important;
+  color: #fff !important;
+}
+.search{
+  width: 100%;
+  float: left;
+  padding-left: 14px;
+  margin-right: 20px;
+
+  .skin-search{
+    input{
+        padding: 30px 10px;
+        font-size: 16px;
+        background: #73337a;
+        color: #cccccc !important;
+        caret-color: #cccccc;
+
+        &::placeholder{
+            color: #aaaaaa;
+            text-transform: capitalize;
+        }
+    }
+    .v-input__append-inner{
+        display: none;
+    }
+  }
+}
+
+.v-select__slot {
+  height: 60px !important;
+  .v-select__selections {
+    padding: 0 1rem;
+    color: #fff !important;
+    input {
+      color: #fff !important;
+    }
+  }
+  .v-input__append-inner {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    height: 60px;
+    margin: 0px;
+    .theme--light.v-icon {
+      color: #fff !important;
+    }
+  }
+}
+
+input {
+  color: #fff !important;
+}
