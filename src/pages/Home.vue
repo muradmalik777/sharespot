@@ -1,14 +1,18 @@
 <template>
   <div>
     <hero></hero>
+    <cities></cities>
   </div>
 </template>
 <script>
 import Hero from '@/components/Hero'
+import Cities from '@/components/PopularCities'
+
 export default {
     name: "Hero",
     components: {
-      'hero': Hero
+      'hero': Hero,
+      'cities': Cities
     },
     data: function(){
         return{

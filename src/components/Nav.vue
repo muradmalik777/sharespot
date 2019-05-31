@@ -5,8 +5,8 @@
         <router-link :to="'/'" class="logo">ShareSpot</router-link>
       </v-flex>
       <v-flex xs12 md4 lg4 class="text-xs-center">
-        <v-btn flat class="nav-link">explore</v-btn>
-        <v-btn flat class="nav-link">about</v-btn>
+        <v-btn flat to="/explore" class="nav-link">explore</v-btn>
+        <v-btn flat to="/about" class="nav-link">about</v-btn>
       </v-flex>
       <v-flex xs12 md4 lg4 class="text-xs-right">
         <v-btn flat class="nav-link login-btn">login</v-btn>
@@ -37,6 +37,7 @@
     font-weight: 600;
     font-size: 24px;
     text-decoration: none;
+    color: #333333;
   }
   .or-text{
     font-size: 12px;
@@ -44,6 +45,15 @@
   .nav-link{
     font-size: 16px;
     font-weight: 600;
+    color: #111111;
+    &::before{
+      display: none;
+    }
+    &:hover{
+      .v-btn__content{
+        color: #20d696 !important;
+      }
+    }
   }
   .login-btn, .signup-btn{
     text-transform: capitalize;
