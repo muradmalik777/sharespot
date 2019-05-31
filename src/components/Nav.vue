@@ -2,7 +2,7 @@
   <v-container class="navbar">
     <v-layout row wrap>
       <v-flex xs12 md4 lg4 pl-4>
-        <h2>ShareSpot</h2>
+        <router-link :to="'/'" class="logo">ShareSpot</router-link>
       </v-flex>
       <v-flex xs12 md4 lg4 class="text-xs-center">
         <v-btn flat class="nav-link">explore</v-btn>
@@ -31,6 +31,11 @@
   max-width: 100% !important;
   margin: 0px !important;
   
+  .logo{
+    font-weight: 600;
+    font-size: 24px;
+    text-decoration: none;
+  }
   .or-text{
     font-size: 12px;
   }

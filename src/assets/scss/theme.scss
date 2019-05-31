@@ -12,6 +12,7 @@ body{
    *{
      font-family: 'sharespot-Light';
      letter-spacing: 0.05rem;
+     color: #333333 !important;
    }
    h1,h2,h3,h4,h5,h6{
      font-family: 'sharespot-Light';
@@ -29,7 +30,7 @@ body{
 //navbar styles
 .nav-link{
   &:hover{
-    color: #0ead70;
+    color: #20d696;
     &::before{
       display: none;
     }

@@ -4,23 +4,23 @@
     <div class="content">
       <router-view/>
     </div>
-    <footer></footer>
+    <foot></foot>
   </v-app>
 </template>
 
 <script>
 import Nav from '@/components/Nav'
-import Footer from '@/components/Footer'
+import Foot from '@/components/Foot'
 
 export default {
   name: 'App',
   components: {
     'navbar': Nav,
-    'footer': Footer
+    'foot': Foot
   },
-  data () {
+  data: function() {
     return {
-      //
+      
     }
   }
 }
