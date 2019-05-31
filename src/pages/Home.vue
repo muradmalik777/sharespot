@@ -1,22 +1,30 @@
 <template>
-  <v-container>
-    <v-layout row wrap>
-      <v-flex xs12>
-        
-      </v-flex>
-    </v-layout>
-  </v-container>
+  <div>
+    <hero></hero>
+  </div>
 </template>
 <script>
+import Hero from '@/components/Hero'
 export default {
-  name: 'Home',
-  data: function(){
-      return{
-          
-      }
-  }
+    name: "Hero",
+    components: {
+      'hero': Hero
+    },
+    data: function(){
+        return{
+
+        }
+    }    
 }
 </script>
 <style lang="scss">
+.hero{
+    max-width: 100%;
+    margin: 0px;
+    padding: 0px;
 
+    .sharing, .booking{
+        position: relative;
+    }
+}
 </style>

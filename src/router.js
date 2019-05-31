@@ -1,11 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
 import Home from '@/pages/Home'
-
-
-
 import store from './store'
+
+
+
 
 function guard(to, from, next){
     if (store.state.user) {
@@ -18,7 +17,6 @@ function guard(to, from, next){
 
 
 Vue.use(Router);
-
 export default new Router({
     scrollBehavior() {
         return { x: 0, y: 0 }

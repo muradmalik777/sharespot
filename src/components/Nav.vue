@@ -1,7 +1,7 @@
 <template>
   <v-container class="navbar">
     <v-layout row wrap>
-      <v-flex xs12 md4 lg4 pl-4>
+      <v-flex xs12 md4 lg4 pl-4 class="text-xs-left">
         <router-link :to="'/'" class="logo">ShareSpot</router-link>
       </v-flex>
       <v-flex xs12 md4 lg4 class="text-xs-center">
@@ -28,8 +28,10 @@
 </script>
 <style lang="scss">
 .navbar{
-  max-width: 100% !important;
-  margin: 0px !important;
+  max-width: 100%;
+  margin: 0px;
+  flex: unset;
+  padding: 15px;
   
   .logo{
     font-weight: 600;
