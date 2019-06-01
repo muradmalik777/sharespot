@@ -2,17 +2,21 @@
   <div>
     <hero></hero>
     <cities></cities>
+    <spaces></spaces>
   </div>
 </template>
 <script>
 import Hero from '@/components/Hero'
-import Cities from '@/components/PopularCities'
+import PopularCities from '@/components/PopularCities'
+import FeaturedSpaces from '@/components/FeaturedSpaces'
+
 
 export default {
     name: "Hero",
     components: {
       'hero': Hero,
-      'cities': Cities
+      'cities': PopularCities,
+      'spaces': FeaturedSpaces
     },
     data: function(){
         return{

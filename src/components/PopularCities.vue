@@ -1,9 +1,9 @@
 <template>
-    <v-container grid-list-lg class="cities m-t-3">
+    <v-container grid-list-lg class="cities m-t-3 spacing">
         <v-layout row wrap>
             <v-flex xs12>
                 <h1 class="capitalize">popular cities</h1>
-                <p class="m-b-4">Locations important for Startups</p>
+                <p class="m-b-2">Locations important for Startups</p>
             </v-flex>
             <v-flex xs12 md3 lg3 v-for="(city, index) in cities" :key="index">
                 <v-card class="city-box pointer"  @mouseenter="show(index)" @mouseleave="hide()">
@@ -42,6 +42,7 @@ export default {
     max-width: 70%;
     .city-box{
         position: relative;
+        
         .city-name{
             color: #ffffff;
             font-weight: 700;
