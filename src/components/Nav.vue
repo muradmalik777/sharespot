@@ -43,8 +43,7 @@
     font-size: 12px;
   }
   .nav-link{
-    font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     color: #111111;
     &::before{
       display: none;

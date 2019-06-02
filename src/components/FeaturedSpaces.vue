@@ -36,7 +36,7 @@ export default {
 </script>
 <style lang="scss">
 .spaces{
-    max-width: 70%;
+    max-width: 1300px;
 
     .space-details{
         padding: 20px;

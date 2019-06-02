@@ -7,25 +7,33 @@
   box-sizing: border-box !important;
 }
 body{
-  background: $purple-dull !important;
   font-size: 16px;
    *{
      font-family: 'sharespot-Light';
      letter-spacing: 0.05rem;
-     color: #333333;
    }
    h1,h2,h3,h4,h5,h6{
-     font-family: 'sharespot-Light';
+     font-family: 'sharespot-light';
+     color: #333333;
    }
    p{
-     font-family: 'sharespot-Light';
+     font-family: 'sharespot-light';
+     font-size: 14px;
+     margin-bottom: 0px;
+     color: #333333;
    }
 }
 .bg-grey{
   background: #f1f1f1;
 }
-.spacing{
-  padding: 50px;
+.bg-dark1{
+  background: $dark1;
+}
+.bg-dark2{
+  background: $dark2;
+}
+.c-white{
+  color: #f1f1f1;
 }
 
 .full-width{

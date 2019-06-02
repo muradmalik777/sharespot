@@ -39,7 +39,7 @@ export default {
 </script>
 <style lang="scss">
 .cities{
-    max-width: 70%;
+    max-width: 1300px;
     .city-box{
         position: relative;
         
