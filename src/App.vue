@@ -28,7 +28,7 @@ export default {
 <style lang="scss">
 .content{
   width: 100%;
-  min-height: 700px;
+  min-height: 92vh;
   overflow-y: auto;
 }
 </style>

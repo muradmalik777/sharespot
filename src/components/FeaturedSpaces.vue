@@ -2,7 +2,7 @@
     <div class="bg-grey">
     <v-container grid-list-lg class="spaces spacing">
         <v-layout row wrap>
-            <v-flex xs12>
+            <v-flex xs12 md12 lg12>
                 <h1 class="capitalize">features spaces</h1>
                 <p class="m-b-2">Book from thousands of unique work and meeting spaces</p>
             </v-flex>
