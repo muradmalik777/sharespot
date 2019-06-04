@@ -35,23 +35,25 @@ export default {
 }
 </script>
 <style lang="scss">
+@import '../assets/scss/variables.scss';
+
 .spaces{
     max-width: 1300px;
 
     .space-details{
         padding: 20px;
         &:hover{
-            background: #ebf8f2;
+            background: $light-green;
             transition: background-color .35s;
              h2{
-                color: #20d696;
+                color: $dark-green;
                 transition: color .35s;
 
             }
         }
 
         p{
-            color: #333333;
+            color: $text-dark;
             font-size: 12px;
             .icon{
                 width: fit-content;
@@ -60,10 +62,10 @@ export default {
             }
         }
         .location{
-            color: #666666;
+            color: $text-medium;
         }
         .price{
-            color: #20d696;
+            color: $dark-green;
         }
     }
 }

@@ -67,6 +67,8 @@ export default {
 }
 </script>
 <style lang="scss">
+@import '../assets/scss/variables.scss';
+
 .news-letter{
     max-width: 1300px;
     .email{
@@ -74,9 +76,9 @@ export default {
         float: left;
         padding: 5px 15px;
         input{
-            color: #ffffff !important;
+            color: $white !important;
             &::placeholder{
-                color: #aaaaaa;
+                color: $text-light;
                 text-transform: capitalize;
             }
         }
@@ -88,7 +90,7 @@ export default {
         font-size: 16px;
         padding-top: .5rem;
         &:hover{
-            color: #20d696;
+            color: $dark-green;
             &::before{
                 display: none;
             }
@@ -102,7 +104,7 @@ export default {
             font-size: 14px;
             margin: 0px 10px;
             &:hover{
-                color: #20d696;
+                color: $dark-green;
                 &::before{
                     display: none;
                 }
@@ -112,7 +114,7 @@ export default {
     .bottom{
         padding-top: 30px;
         margin-top: 30px;
-        border-top: 1px solid #666666;
+        border-top: 1px solid $text-medium;
         p{
             font-size: 12px;
             margin-top: 5px;
@@ -123,7 +125,7 @@ export default {
             padding: 0;
             margin: 0px 15px;
             &:hover{
-                color: #20d696;
+                color: $dark-green;
                 &::before{
                     display: none;
                 }
@@ -132,10 +134,10 @@ export default {
         .icon{
             font-size: 18px;
             cursor: pointer;
-            color: #666666;
+            color: $text-medium;
             margin: 0px 10px;
             &:hover{
-                color: #20d696;
+                color: $dark-green;
             }
         }
     }

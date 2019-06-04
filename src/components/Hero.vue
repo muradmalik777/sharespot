@@ -47,7 +47,7 @@ export default {
       left: 0;
       width: 100%;
       height: 100%;
-      background: #00000070;
+      background: $overlay;
     }
     .box {
       position: absolute;
@@ -55,21 +55,22 @@ export default {
       left: 27.5%;
       width: 45%;
       h1 {
-        color: #ffffff !important;
+        color: $white !important;
         font-size: 52px;
         font-family: "sharespot-regular";
       }
       .hero-btn {
-        background: #ccffe6;
+        background: $light-green;
         height: 70px;
         padding: 0px 30px;
         font-weight: 600;
         &:hover{
           background: $dark-green;
+          transition: background-color .35s;
         }
       }
       p {
-        color: #ffffff !important;
+        color: $white !important;
         font-size: 14px;
       }
     }

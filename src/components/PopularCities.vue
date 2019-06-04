@@ -38,13 +38,15 @@ export default {
 }
 </script>
 <style lang="scss">
+@import '../assets/scss/variables.scss';
+
 .cities{
     max-width: 1300px;
     .city-box{
         position: relative;
         
         .city-name{
-            color: #ffffff;
+            color: $white;
             font-weight: 700;
             font-size: 22px;
             position: absolute;
@@ -60,7 +62,7 @@ export default {
             left: 0;
             width: 100%;
             height: 100%;
-            background: #00000070;
+            background: $overlay;
             z-index: 10;
         }
     }
