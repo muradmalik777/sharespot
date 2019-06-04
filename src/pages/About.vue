@@ -2,7 +2,7 @@
     <v-container grid-list-lg class="about spacing">
         <v-layout row wrap>
             <v-flex xs12 md5 lg4>
-                <v-img :src="require('@/assets/images/about_img.jpg')"></v-img>
+                <v-img contain :src="require('@/assets/images/about_img.jpg')"></v-img>
             </v-flex>
             <v-flex xs12 md7 lg8 class="about-text">
                 <h1 class="about-title">About</h1><br>
