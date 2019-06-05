@@ -6,7 +6,7 @@
                 <h1 class="capitalize">features spaces</h1>
                 <p class="m-b-2">Book from thousands of unique work and meeting spaces</p>
             </v-flex>
-            <v-flex xs12 md4 lg4 v-for="space in 6" :key="space" class="m-b-4 pointer">
+            <v-flex xs12 md4 lg4 v-for="space in 6" @click="$router.push('/space/' + space)" :key="space" class="m-b-4 pointer">
                 <v-img contain :src="getImage(space)"></v-img>
                 <v-card class="space-details">
                     <p class="uppercase name m-b-s">space host <span class="f-r"><v-icon class="icon">star</v-icon>4.9</span></p>
