@@ -9,13 +9,14 @@ export default new Vuex.Store({
     state: {
         user: {},
         selectedSpace: {},
-        spaceImages: [],
-        spaceRating: 0,
-        spaceReviews: [],
+        loading: false
     },
     mutations: {
         refreshUser: function (state, user) {
             state.user = user
+        },
+        changeSelectedSpace: function (state, space) {
+            state.selectedSpace = space
         },
     }
 });
