@@ -100,7 +100,7 @@ export default {
             }
         }
         .booking{
-            margin: 1rem 0;
+            margin: 1rem 0 0;
             background: $dark-green;
             height: 65px;
             font-weight: 600;
