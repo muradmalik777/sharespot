@@ -78,7 +78,7 @@ export default {
 
         div{
             width: 100%;
-            padding: 20px 30px;
+            padding: 25px 30px;
         }
         .price{
             border-bottom: 1px solid $white;
@@ -88,7 +88,7 @@ export default {
                 margin-left: 4rem;
                 .host-icon{
                     background: $white;
-                    padding: 7px;
+                    padding: 5px;
                     border-radius: 100%;
                     font-size: 18px;
                     margin-left: .5rem;
@@ -100,9 +100,9 @@ export default {
             }
         }
         .booking{
-            margin: 1.5rem 0 0;
+            margin: 1rem 0;
             background: $dark-green;
-            height: 55px;
+            height: 65px;
             font-weight: 600;
         }
     }
