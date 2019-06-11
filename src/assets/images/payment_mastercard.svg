@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid" width="51" height="30" viewBox="0 0 51 30">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #f1f3f2;
+      }
+
+      .cls-2 {
+        fill: #eb3636;
+      }
+
+      .cls-3 {
+        fill: #ffaf38;
+      }
+    </style>
+  </defs>
+  <g>
+    <rect width="51" height="30" rx="1" ry="1" class="cls-1"/>
+    <circle cx="21" cy="15" r="6" class="cls-2"/>
+    <circle cx="30" cy="15" r="6" class="cls-3"/>
+  </g>
+</svg>

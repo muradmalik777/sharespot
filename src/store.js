@@ -7,11 +7,16 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     plugins: [createPersistedState()],
     state: {
-        user: null,
+        user: {},
+        selectedSpace: {},
+        loading: false
     },
     mutations: {
         refreshUser: function (state, user) {
             state.user = user
+        },
+        changeSelectedSpace: function (state, space) {
+            state.selectedSpace = space
         },
     }
 });

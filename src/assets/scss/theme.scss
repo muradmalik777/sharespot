@@ -7,31 +7,35 @@
   box-sizing: border-box !important;
 }
 body{
-  background: $purple-dull !important;
   font-size: 16px;
    *{
      font-family: 'sharespot-Light';
      letter-spacing: 0.05rem;
    }
    h1,h2,h3,h4,h5,h6{
-     font-family: 'sharespot-Light';
+     font-family: 'sharespot-light';
+     color: #333333;
    }
    p{
-     font-family: 'sharespot-Light';
-     font-size: 18px;
+     font-family: 'sharespot-light';
+     font-size: 14px;
+     margin-bottom: 0px;
+     color: #333333;
    }
 }
-.full-width{
-  width: 100%;
+.bg-grey{
+  background: #f1f1f1;
+}
+.bg-dark1{
+  background: $dark1;
+}
+.bg-dark2{
+  background: $dark2;
+}
+.c-white{
+  color: #f1f1f1;
 }
 
-
-//navbar styles
-.nav-link{
-  &:hover{
-    color: #0ead70;
-    &::before{
-      display: none;
-    }
-  }
+.full-width{
+  width: 100%;
 }
