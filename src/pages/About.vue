@@ -62,4 +62,15 @@ export default {
         }
     }
 }
+@media only screen and (max-width: 550px){
+    .about{
+        max-width: 100%;
+        padding: 30px 20px !important;
+        margin-top: 0;
+
+        .about-text{
+            padding: 30px 20px !important;
+        }
+    }
+}
 </style>

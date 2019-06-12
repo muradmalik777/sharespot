@@ -18,5 +18,8 @@ export default new Vuex.Store({
         changeSelectedSpace: function (state, space) {
             state.selectedSpace = space
         },
+        logout: function (state) {
+            state.user = null
+        }
     }
 });

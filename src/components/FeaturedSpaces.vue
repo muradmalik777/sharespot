@@ -69,4 +69,9 @@ export default {
         }
     }
 }
+@media only screen and (max-width: 550px){
+    .spaces{
+        padding: 30px 20px !important;
+    }
+}
 </style>

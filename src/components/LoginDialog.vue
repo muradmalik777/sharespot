@@ -21,7 +21,7 @@
                                         <v-icon class="icon">fab fa-facebook-f</v-icon>
                                         <v-icon class="icon">fas fa-envelope</v-icon>
                                     </div>
-                                    <v-form ref="from1" lazy-validation>
+                                    <v-form ref="login" lazy-validation>
                                         <v-text-field
                                             v-model="loginData.email"
                                             :rules="emailRules"
@@ -41,7 +41,7 @@
                                             outline
                                             required>
                                         </v-text-field>
-                                        <v-btn class="full-width login-btn">login</v-btn>
+                                        <v-btn class="full-width login-btn" @click="login">login</v-btn>
                                     </v-form>
                                 </div>
                             </v-tab-item>
@@ -52,7 +52,7 @@
                                         <v-icon class="icon">fab fa-facebook-f</v-icon>
                                         <v-icon class="icon">fas fa-envelope</v-icon>
                                     </div>
-                                    <v-form ref="from2" lazy-validation>
+                                    <v-form ref="register" lazy-validation>
                                         <v-text-field
                                             v-model="signupData.name"
                                             :rules="nameRules"
@@ -82,7 +82,7 @@
                                             outline
                                             required>
                                         </v-text-field>
-                                        <v-btn class="full-width login-btn">register</v-btn>
+                                        <v-btn class="full-width login-btn" @click="register">register</v-btn>
                                     </v-form>
                                 </div>
                             </v-tab-item>
@@ -96,6 +96,8 @@
     </div>
 </template>
 <script>
+import Api from '@/services/Api'
+
 export default {
     name: 'LoginDialog',
     props: ['dialog', 'active'],
@@ -118,10 +120,35 @@ export default {
             this.val = newVal
         }
     },
+    created: function(){
+        
+    },
     methods: {
         closeDialog: function(){
             this.$emit('close')
         },
+        login: function(){
+            if(this.$refs.login.validate()){
+                let $object  = new Api('/user/login')
+                $object.post(this.loginData).then(resp => {
+                    this.$store.commit('refreshUser', resp)
+                    this.closeDialog()
+                }).catch((error) => {
+                    this.showMessage(error.response.data.message)
+                })
+            } 
+        },
+        register: function(){
+            if(this.$refs.register.validate()){
+                let $object  = new Api('/user/register')
+                $object.post(this.signupData).then(resp => {
+                    this.$store.commit('refreshUser', resp)
+                    this.closeDialog()
+                }).catch((error) => {
+                    this.showMessage(error.response.data.message)
+                })
+            } 
+        }
     }
 }
 </script>

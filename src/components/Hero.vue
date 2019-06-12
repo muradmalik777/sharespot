@@ -5,7 +5,7 @@
                 <v-img contain :src="require('@/assets/images/top_space1.jpg')"></v-img>
                 <div class="overlay"></div>
                 <div class="box">
-                    <h1 class="capitalize t-c">share <br> some space</h1>
+                    <h1 class="capitalize t-c">share some space</h1>
                     <v-btn class="hero-btn m-t-3 capitalize">share your space now</v-btn>
                     <p class="m-t">Share your Space and Earn Money without putting any extra efforts</p>
                 </div>
@@ -14,7 +14,7 @@
                 <v-img contain :src="require('@/assets/images/top_space2.jpg')"></v-img>
                 <div class="overlay"></div>
                 <div class="box">
-                    <h1 class="capitalize t-c">book <br> some space</h1>
+                    <h1 class="capitalize t-c">book some space</h1>
                     <v-btn class="hero-btn m-t-3 capitalize">find a space now</v-btn>
                     <p class="m-t">Browse Wide Range of Desks, Meeting Rooms, Warehouses and Self Stores</p>
                 </div>
@@ -56,14 +56,15 @@ export default {
       width: 45%;
       h1 {
         color: $white !important;
-        font-size: 52px;
+        font-size: 42px;
         font-family: "sharespot-regular";
       }
       .hero-btn {
         background: $light-green;
-        height: 70px;
+        height: 60px;
         padding: 0px 30px;
         font-weight: 600;
+        margin-top: 1.5rem;
         &:hover{
           background: $dark-green;
           transition: background-color .35s;
@@ -72,6 +73,26 @@ export default {
       p {
         color: $white !important;
         font-size: 14px;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 767px){
+  .hero {
+
+    .sharing, .booking {
+      .box {
+        top: 10%;
+        left: 10%;
+        width: 80%;
+        h1 {
+          font-size: 24px;
+        }
+        .hero-btn {
+          height: 40px;
+          padding: 0px 10px;
+          margin: .5rem 0;
+        }
       }
     }
   }

@@ -67,4 +67,9 @@ export default {
         }
     }
 }
+@media only screen and (max-width: 550px){
+    .cities{
+        padding: 30px 20px !important;
+    }
+}
 </style>
