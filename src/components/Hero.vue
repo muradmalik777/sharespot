@@ -6,7 +6,7 @@
                 <div class="overlay"></div>
                 <div class="box">
                     <h1 class="capitalize t-c">share some space</h1>
-                    <v-btn class="hero-btn m-t-3 capitalize">share your space now</v-btn>
+                    <v-btn to="/share" class="hero-btn m-t-3 capitalize">share your space now</v-btn>
                     <p class="m-t">Share your Space and Earn Money without putting any extra efforts</p>
                 </div>
             </v-flex>
@@ -15,7 +15,7 @@
                 <div class="overlay"></div>
                 <div class="box">
                     <h1 class="capitalize t-c">book some space</h1>
-                    <v-btn class="hero-btn m-t-3 capitalize">find a space now</v-btn>
+                    <v-btn to="/explore" class="hero-btn m-t-3 capitalize">find a space now</v-btn>
                     <p class="m-t">Browse Wide Range of Desks, Meeting Rooms, Warehouses and Self Stores</p>
                 </div>
             </v-flex>
@@ -82,7 +82,7 @@ export default {
 
     .sharing, .booking {
       .box {
-        top: 10%;
+        top: 20%;
         left: 10%;
         width: 80%;
         h1 {
