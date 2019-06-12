@@ -9,22 +9,42 @@
         <v-btn flat to="/about" class="nav-link">about</v-btn>
       </v-flex>
       <v-flex xs12 md4 lg4 class="text-xs-right">
-        <v-btn flat class="nav-link login-btn">login</v-btn>
+        <v-btn flat class="nav-link login-btn" @click="login">login</v-btn>
         <span class="or-text">OR</span>
-        <v-btn flat class="nav-link signup-btn">signup</v-btn>
+        <v-btn flat class="nav-link signup-btn" @click="signup">signup</v-btn>
+        <login :dialog="show" :active="val" @close="hideDialog"></login>
       </v-flex>
     </v-layout>
   </v-container>
 </template>
 <script>
-  export default {
-    name: 'Nav',
-    data: function(){
-      return{
+import Login from '@/components/LoginDialog'
 
-      }
+export default {
+  name: 'Nav',
+  components: {
+    'login': Login
+  },
+  data: function(){
+    return{
+      show: false,
+      val: 'login'
+    }
+  },
+  methods: {
+    login: function(){
+      this.show = true
+      this.val = 'login'
+    },
+    signup: function(){
+      this.show = true
+      this.val = 'signup'
+    },
+    hideDialog: function(){
+      this.show = false
     }
   }
+}
 </script>
 <style lang="scss">
 .navbar{

@@ -45,7 +45,7 @@
                 <v-flex xs12 md4 lg2 class="text-xs-right">
                     <v-icon class="icon">fab fa-twitter</v-icon>
                     <v-icon class="icon">fab fa-facebook-f</v-icon>
-                    <v-icon class="icon">fab fa-google-plus-g</v-icon>
+                    <v-icon class="icon">fas fa-envelope</v-icon>
                 </v-flex>
             </v-layout>
         </v-container>
