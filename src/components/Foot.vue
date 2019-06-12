@@ -24,7 +24,7 @@
     <div class="bg-dark2">
         <v-container class="foot-links spacing">
             <v-layout row wrap>
-                <v-flex xs12 md6 lg7 class="text-xs-center">
+                <v-flex xs12 md6 lg7 class="text-xs-center text-md-left">
                     <p class="c-white m-t-s m-b-s">The Coworker Community that Loves to Share</p>
                 </v-flex>
                 <v-flex xs12 md6 lg5 class="links text-xs-center text-md-right">

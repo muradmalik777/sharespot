@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="navbar">
     <v-layout row wrap>
-      <v-flex xs2 md4 lg4 pl-4 class="text-xs-left" v-if="$vuetify.breakpoint.xs">
+      <v-flex xs2 md4 lg4 pl-4 class="text-xs-left" v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm">
         <v-menu offset-y full-width min-width="100%">
           <template v-slot:activator="{ on }">
             <v-btn flat class="burger-btn" v-on="on"><v-icon class="m-t-s">fas fa-bars</v-icon></v-btn>
@@ -16,14 +16,14 @@
           </v-list>
         </v-menu>
       </v-flex>
-      <v-flex xs6 md4 lg4 pl-1 class="text-xs-left" v-if="$vuetify.breakpoint.xs">
+      <v-flex xs6 md4 lg4 pl-1 class="text-xs-left" v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm">
         <v-btn flat to="/" class="logo-mobile">ShareSpot</v-btn>
       </v-flex>
-      <v-flex xs6 md4 lg4 pl-4 class="text-xs-left" v-if="!$vuetify.breakpoint.xs">
+      <v-flex xs6 md4 lg4 pl-4 class="text-xs-left" v-if="!$vuetify.breakpoint.xs && !$vuetify.breakpoint.sm">
         <router-link :to="'/'" class="logo">ShareSpot</router-link>
       </v-flex>
 
-      <v-flex xs12 md4 lg4 class="text-xs-center" v-if="!$vuetify.breakpoint.xs">
+      <v-flex xs12 md4 lg4 class="text-xs-center" v-if="!$vuetify.breakpoint.xs && !$vuetify.breakpoint.sm">
         <v-btn flat to="/explore" class="nav-link">explore</v-btn>
         <v-btn flat to="/about" class="nav-link">about</v-btn>
       </v-flex>
@@ -31,7 +31,7 @@
       <v-flex xs4 md4 lg4 class="text-xs-right text-md-right" v-if="$store.state.user">
         <v-menu offset-y open-on-hover>
           <template v-slot:activator="{ on }">
-            <v-btn v-if="!$vuetify.breakpoint.xs" flat v-on="on" class="user-menu"> <v-icon class="m-r">person</v-icon>{{ $store.state.user.name }}</v-btn>
+            <v-btn v-if="!$vuetify.breakpoint.xs && $vuetify.breakpoint.sm" flat v-on="on" class="user-menu"> <v-icon class="m-r">person</v-icon>{{ $store.state.user.name }}</v-btn>
             <v-btn v-else flat v-on="on" class="user-menu"> <v-icon class="m-r">person</v-icon></v-btn>
 
           </template>
@@ -46,13 +46,13 @@
         </v-menu>
       </v-flex>
 
-      <v-flex xs12 md4 lg4 class="text-xs-right" v-if="!$store.state.user && !$vuetify.breakpoint.xs">
+      <v-flex xs12 md4 lg4 class="text-xs-right" v-if="!$store.state.user && !$vuetify.breakpoint.xs && !$vuetify.breakpoint.sm">
         <v-btn flat class="nav-link login-btn" @click="login">login</v-btn>
         <span class="or-text">OR</span>
         <v-btn flat class="nav-link signup-btn" @click="signup">signup</v-btn>
         <login :dialog="show" :active="val" @close="hideDialog"></login>
       </v-flex>
-      <v-flex xs4 md4 lg4 class="text-xs-right" v-if="!$store.state.user && $vuetify.breakpoint.xs">
+      <v-flex xs4 md4 lg4 class="text-xs-right" v-if="!$store.state.user && ($vuetify.breakpoint.xs || $vuetify.breakpoint.sm)">
         <v-btn flat class="nav-link login-btn-mobile" @click="login">login</v-btn>
         <login :dialog="show" :active="val" @close="hideDialog"></login>
       </v-flex>
@@ -120,7 +120,7 @@ export default {
     text-transform: capitalize;
   }
 }
-@media only screen and (max-width: 550px){
+@media only screen and (max-width: 960px){
   .navbar{
     padding: 15px 0px;
     .burger-btn{
