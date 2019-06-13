@@ -21,7 +21,7 @@
                                         <v-icon class="icon">fab fa-facebook-f</v-icon>
                                         <v-icon class="icon">fas fa-envelope</v-icon>
                                     </div>
-                                    <v-form ref="login" lazy-validation>
+                                    <v-form ref="login" lazy-validation @keyup.native.enter="login">
                                         <v-text-field
                                             v-model="loginData.email"
                                             :rules="emailRules"
@@ -52,7 +52,7 @@
                                         <v-icon class="icon">fab fa-facebook-f</v-icon>
                                         <v-icon class="icon">fas fa-envelope</v-icon>
                                     </div>
-                                    <v-form ref="register" lazy-validation>
+                                    <v-form ref="register" lazy-validation @keyup.native.enter="register">
                                         <v-text-field
                                             v-model="signupData.name"
                                             :rules="nameRules"

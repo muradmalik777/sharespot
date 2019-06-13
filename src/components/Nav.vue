@@ -2,56 +2,65 @@
   <v-container fluid class="navbar">
     <v-layout row wrap>
       <v-flex xs2 md4 lg4 pl-4 class="text-xs-left" v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm">
-        <v-menu offset-y full-width min-width="100%">
+        <v-menu offset-y full-width min-width="100%" transition="slide-y-transition">
           <template v-slot:activator="{ on }">
             <v-btn flat class="burger-btn" v-on="on"><v-icon class="m-t-s">fas fa-bars</v-icon></v-btn>
           </template>
           <v-list>
             <v-list-tile @click="$router.push('/explore')">
-              <v-list-tile-title>Explore</v-list-tile-title>
+              <v-list-tile-title><p class="t-c">Explore</p></v-list-tile-title>
             </v-list-tile>
             <v-list-tile @click="$router.push('/about')">
-              <v-list-tile-title>About</v-list-tile-title>
+              <v-list-tile-title><p class="t-c">About</p></v-list-tile-title>
+            </v-list-tile>
+            <v-list-tile @click="$router.push('/share')">
+              <v-list-tile-title><p class="t-c">Share Space</p></v-list-tile-title>
             </v-list-tile>
           </v-list>
         </v-menu>
       </v-flex>
+
       <v-flex xs6 md4 lg4 pl-1 class="text-xs-left" v-if="$vuetify.breakpoint.xs || $vuetify.breakpoint.sm">
         <v-btn flat to="/" class="logo-mobile">ShareSpot</v-btn>
       </v-flex>
-      <v-flex xs6 md4 lg4 pl-4 class="text-xs-left" v-if="!$vuetify.breakpoint.xs && !$vuetify.breakpoint.sm">
-        <router-link :to="'/'" class="logo">ShareSpot</router-link>
+
+      <v-flex xs6 md2 lg2 pl-4 class="text-xs-left" v-if="!$vuetify.breakpoint.xs && !$vuetify.breakpoint.sm">
+        <v-btn flat to="/" class="logo capitalize">ShareSpot</v-btn>
       </v-flex>
 
-      <v-flex xs12 md4 lg4 class="text-xs-center" v-if="!$vuetify.breakpoint.xs && !$vuetify.breakpoint.sm">
+      <v-flex xs12 md8 lg8 class="text-xs-center" v-if="!$vuetify.breakpoint.xs && !$vuetify.breakpoint.sm">
         <v-btn flat to="/explore" class="nav-link">explore</v-btn>
         <v-btn flat to="/about" class="nav-link">about</v-btn>
+        <v-btn flat to="/share" class="share-space-btn" v-if="$store.state.user && !$vuetify.breakpoint.xs && !$vuetify.breakpoint.sm">Share Space</v-btn>
       </v-flex>
 
-      <v-flex xs4 md4 lg4 class="text-xs-right text-md-right" v-if="$store.state.user">
-        <v-menu offset-y open-on-hover>
+      <v-flex xs4 md2 lg2 class="text-xs-right text-md-right" v-if="$store.state.user">
+        <v-menu offset-y transition="slide-y-transition">
           <template v-slot:activator="{ on }">
-            <v-btn v-if="!$vuetify.breakpoint.xs && $vuetify.breakpoint.sm" flat v-on="on" class="user-menu"> <v-icon class="m-r">person</v-icon>{{ $store.state.user.name }}</v-btn>
-            <v-btn v-else flat v-on="on" class="user-menu"> <v-icon class="m-r">person</v-icon></v-btn>
-
+            <v-btn v-if="!$vuetify.breakpoint.xs && !$vuetify.breakpoint.sm" flat v-on="on" class="user-menu capitalize"> <v-icon class="m-r">far fa-user</v-icon>{{ $store.state.user.name }}</v-btn>
+            <v-btn v-else flat v-on="on" class="user-menu"> <v-icon class="m-r">far fa-user</v-icon></v-btn>
           </template>
           <v-list>
             <v-list-tile @click="$router.push('/dashboard')">
-              <v-list-tile-title>Dashboard</v-list-tile-title>
+              <v-list-tile-title><p>Dashboard</p></v-list-tile-title>
+            </v-list-tile>
+            <v-list-tile @click="$router.push('/dashboard')">
+              <v-list-tile-title><p>Chang Password</p></v-list-tile-title>
             </v-list-tile>
             <v-list-tile @click="logout">
-              <v-list-tile-title>Logout</v-list-tile-title>
+              <v-list-tile-title><p>Logout</p></v-list-tile-title>
             </v-list-tile>
           </v-list>
         </v-menu>
       </v-flex>
 
-      <v-flex xs12 md4 lg4 class="text-xs-right" v-if="!$store.state.user && !$vuetify.breakpoint.xs && !$vuetify.breakpoint.sm">
+      <v-flex xs12 md2 lg2 class="text-xs-right" v-if="!$store.state.user && !$vuetify.breakpoint.xs && !$vuetify.breakpoint.sm">
         <v-btn flat class="nav-link login-btn" @click="login">login</v-btn>
         <span class="or-text">OR</span>
         <v-btn flat class="nav-link signup-btn" @click="signup">signup</v-btn>
         <login :dialog="show" :active="val" @close="hideDialog"></login>
       </v-flex>
+      
       <v-flex xs4 md4 lg4 class="text-xs-right" v-if="!$store.state.user && ($vuetify.breakpoint.xs || $vuetify.breakpoint.sm)">
         <v-btn flat class="nav-link login-btn-mobile" @click="login">login</v-btn>
         <login :dialog="show" :active="val" @close="hideDialog"></login>
@@ -60,96 +69,112 @@
   </v-container>
 </template>
 <script>
-import Login from '@/components/LoginDialog'
+import Login from "@/components/LoginDialog";
 
 export default {
-  name: 'Nav',
+  name: "Nav",
   components: {
-    'login': Login
+    login: Login
   },
-  data: function(){
-    return{
+  data: function() {
+    return {
       show: false,
-      val: 'login'
-    }
+      val: "login"
+    };
   },
   methods: {
-    login: function(){
-      this.show = true
-      this.val = 'login'
+    login: function() {
+      this.show = true;
+      this.val = "login";
     },
-    signup: function(){
-      this.show = true
-      this.val = 'signup'
+    signup: function() {
+      this.show = true;
+      this.val = "signup";
     },
-    hideDialog: function(){
-      this.show = false
+    hideDialog: function() {
+      this.show = false;
     }
   }
-}
+};
 </script>
 <style lang="scss">
-.navbar{
+@import "../assets/scss/variables.scss";
+
+.navbar {
   max-width: 100%;
   margin: 0px;
   flex: unset;
   padding: 15px;
-  
-  .logo{
+
+  .logo {
     font-weight: 600;
     font-size: 24px;
     text-decoration: none;
-    color: #333333;
-  }
-  .or-text{
-    font-size: 12px;
-  }
-  .nav-link{
-    font-weight: 500;
-    color: #111111;
-    &::before{
+    color: $text-dark;
+    &::before {
       display: none;
     }
-    &:hover{
-      .v-btn__content{
-        color: #20d696 !important;
+  }
+  .or-text {
+    font-size: 12px;
+  }
+  .nav-link {
+    font-weight: 500;
+    color: $dark1;
+    &::before {
+      display: none;
+    }
+    &:hover {
+      .v-btn__content {
+        color: $dark-green !important;
       }
     }
   }
-  .login-btn, .signup-btn{
+  .user-menu {
+    min-width: fit-content;
+    margin-right: 2rem;
+    .v-icon {
+      font-size: 18px;
+    }
+  }
+  .login-btn,
+  .signup-btn {
     text-transform: capitalize;
   }
+  .share-space-btn {
+    border: 2px solid $dark-green;
+  }
 }
-@media only screen and (max-width: 960px){
-  .navbar{
+@media only screen and (max-width: 960px) {
+  .navbar {
     padding: 15px 0px;
-    .burger-btn{
+    .burger-btn {
       padding: 0;
       margin: 0;
       min-width: fit-content;
-      .v-icon{
-        font-size: 22px;
+      .v-icon {
+        font-size: 20px;
       }
     }
-    .logo-mobile{
+    .logo-mobile {
       font-weight: 600;
       font-size: 18px;
       padding: 0;
-      margin: .4rem 0 0 0;
+      margin: 0.4rem 0 0 0;
       min-width: fit-content;
-      &::before{
+      &::before {
         display: none;
       }
     }
-    .user-menu{
+    .user-menu {
       padding: 0;
-      margin: .4rem 1rem 0 0;
+      margin: 0.2rem 1rem 0 0;
       min-width: fit-content;
-      .v-icon{
-        font-size: 30px;
+      .v-icon {
+        font-size: 20px;
       }
     }
-    .login-btn-mobile{
+    .login-btn-mobile {
       font-size: 16px;
       font-weight: 600;
     }
