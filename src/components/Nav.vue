@@ -42,13 +42,13 @@
           </template>
           <v-list>
             <v-list-tile @click="$router.push('/dashboard')">
-              <v-list-tile-title><p>Dashboard</p></v-list-tile-title>
+              <v-list-tile-title><p><v-icon class="user-icon">fas fa-user-alt</v-icon> Dashboard</p></v-list-tile-title>
             </v-list-tile>
             <v-list-tile @click="$router.push('/dashboard')">
-              <v-list-tile-title><p>Chang Password</p></v-list-tile-title>
+              <v-list-tile-title><p><v-icon class="user-icon">fas fa-lock</v-icon> Chang Password</p></v-list-tile-title>
             </v-list-tile>
             <v-list-tile @click="logout">
-              <v-list-tile-title><p>Logout</p></v-list-tile-title>
+              <v-list-tile-title><p><v-icon class="user-icon">fas fa-sign-out-alt</v-icon> Logout</p></v-list-tile-title>
             </v-list-tile>
           </v-list>
         </v-menu>

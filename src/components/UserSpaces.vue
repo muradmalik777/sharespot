@@ -1,7 +1,7 @@
 <template>
     <v-container grid-list-xl class="user-spaces spacing">
         <v-layout row wrap>
-            <v-flex xs12 sm6 md4 lg4 v-for="space in 3" :key="space" class="m-b-4">
+            <v-flex xs12 sm6 md4 lg4 v-for="space in 3" :key="space">
                 <v-img contain :src="getImage(space)"></v-img>
                 <v-card flat class="space-details">
                     <p class="uppercase name m-b-s">space host <span class="f-r"><v-icon class="icon">star</v-icon>4.9</span></p>
@@ -58,19 +58,19 @@ export default {
         }
     }
     .user-space-actions{
-        border: 1px solid #dddddd;
+        border: 1px solid $light;
         border-top: 0;
 
         .user-space-btn{
             min-width: 50%;
             float: left;
             margin: 0;
-            border-bottom: 1px solid #dddddd;
+            border-bottom: 1px solid $light;
             background: $white;
             height: 60px;
 
             &:first-child{
-                border-right: 1px solid #dddddd;
+                border-right: 1px solid $light;
             }
         }
         .promote-btn{
@@ -84,7 +84,7 @@ export default {
 }
 @media only screen and (max-width: 550px){
     .user-spaces{
-        padding: 30px 20px !important;
+        padding: 20px !important;
     }
 }
 </style>
