@@ -1,13 +1,10 @@
 import Vue from 'vue'
 
 Vue.mixin({
-    computed: {
-
-    },
     methods: {
         logout: function () {
             this.$store.commit('logout')
-            this.$router.push("/login")
+            this.$router.push("/")
         },
         showMessage: function (message) {
             this.$toasted.show(message, {
@@ -17,7 +14,4 @@ Vue.mixin({
             });
         },
     },
-    filters: {
-
-    }
 });

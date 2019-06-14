@@ -6,9 +6,9 @@
                 <h1 class="capitalize">features spaces</h1>
                 <p class="m-b-2">Book from thousands of unique work and meeting spaces</p>
             </v-flex>
-            <v-flex xs12 md4 lg4 v-for="space in 6" @click="$router.push('/space/' + space)" :key="space" class="m-b-4 pointer">
+            <v-flex xs12 md4 lg4 v-for="space in 6" @click="$router.push('/space/' + space)" :key="space" class="m-b pointer">
                 <v-img contain :src="getImage(space)"></v-img>
-                <v-card class="space-details">
+                <v-card flat class="space-details">
                     <p class="uppercase name m-b-s">space host <span class="f-r"><v-icon class="icon">star</v-icon>4.9</span></p>
                     <h2 class="capitalize">space host</h2>
                     <p class="uppercase location m-t-s"><v-icon class="icon">location_on</v-icon> 14 Bedford Square, WC1B 3JA, London</p>
@@ -42,6 +42,7 @@ export default {
 
     .space-details{
         padding: 20px;
+        border: 1px solid #dddddd;
         &:hover{
             background: $light-green;
             transition: background-color .35s;
@@ -67,6 +68,11 @@ export default {
         .price{
             color: $dark-green;
         }
+    }
+}
+@media only screen and (max-width: 550px){
+    .spaces{
+        padding: 30px 20px !important;
     }
 }
 </style>
