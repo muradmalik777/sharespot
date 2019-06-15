@@ -5,6 +5,10 @@ import About from '@/pages/About'
 import Space from '@/pages/Space'
 import Dashboard from '@/pages/Dashboard'
 import ShareSpace from '@/pages/ShareSpace'
+import GeneralInfoForm from '@/components/GeneralInfoForm'
+import DetailsForm from '@/components/DetailsForm'
+import PhotosForm from '@/components/DetailsForm'
+
 import store from './store'
 
 
@@ -30,6 +34,12 @@ export default new Router({
         { path: '/about', component: About },
         { path: '/space/:slug?', component: Space },
         { path: '/dashboard', component: Dashboard, beforeEnter: guard },
-        { path: '/share', component: ShareSpace, beforeEnter: guard },
+        { path: '/share', component: ShareSpace, beforeEnter: guard,
+            children: [
+                { path: 'info', component: GeneralInfoForm },
+                { path: 'details', component: DetailsForm },
+                { path: 'photos', component: PhotosForm },
+            ]
+        },
     ]
 })

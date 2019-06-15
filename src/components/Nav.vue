@@ -31,7 +31,7 @@
       <v-flex xs12 md8 lg8 class="text-xs-center" v-if="!$vuetify.breakpoint.xs && !$vuetify.breakpoint.sm">
         <v-btn flat to="/explore" class="nav-link">explore</v-btn>
         <v-btn flat to="/about" class="nav-link">about</v-btn>
-        <v-btn flat to="/share" class="share-space-btn" v-if="$store.state.user && !$vuetify.breakpoint.xs && !$vuetify.breakpoint.sm">Share Space</v-btn>
+        <v-btn flat to="/share/info" class="share-space-btn" v-if="$store.state.user && !$vuetify.breakpoint.xs && !$vuetify.breakpoint.sm">Share Space</v-btn>
       </v-flex>
 
       <v-flex xs4 md2 lg2 class="text-xs-right text-md-right" v-if="$store.state.user">
@@ -142,7 +142,10 @@ export default {
     text-transform: capitalize;
   }
   .share-space-btn {
-    border: 2px solid $dark-green;
+    border: 1px solid $dark-green;
+    &:hover{
+      background: $dark-green;
+    }
   }
 }
 @media only screen and (max-width: 960px) {
