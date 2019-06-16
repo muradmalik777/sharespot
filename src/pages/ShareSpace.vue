@@ -11,7 +11,7 @@
                 </div>
             </v-flex>
 
-            <v-flex xs12 sm8 md7 lg7 class="text-xs-center forms" elevation-8>
+            <v-flex xs12 sm8 md7 lg7 class="text-xs-center forms" elevation-3>
                 <router-view></router-view>
             </v-flex>
         </v-layout>
@@ -32,17 +32,18 @@ export default {
 
 .share-space{
     max-width: 100%;
-    height: 100vh;
+    min-height: 100vh;
     padding: 0;
     margin: 0;
+    background: $form-side;
     .heads{
         width: fit-content;
         margin: 10rem auto;
         .heading{
-            font-size: 42px;
+            font-size: 46px;
             width: fit-content;
         }
-        p{ margin-bottom: 2rem; }
+        p{ margin-bottom: 3rem; }
         .current{
             margin-bottom: 1rem;
             font-size: 18px;
@@ -59,7 +60,8 @@ export default {
         }
     }
     .forms{
-        height: 100vh;
+        min-height: 100vh;
+        background: $form-color;
     }
 }
 </style>
