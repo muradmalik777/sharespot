@@ -13,7 +13,7 @@
             <v-list-tile @click="$router.push('/about')">
               <v-list-tile-title><p class="t-c">About</p></v-list-tile-title>
             </v-list-tile>
-            <v-list-tile @click="$router.push('/share')">
+            <v-list-tile @click="$router.push('/share/info')">
               <v-list-tile-title><p class="t-c">Share Space</p></v-list-tile-title>
             </v-list-tile>
           </v-list>

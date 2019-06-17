@@ -1,7 +1,7 @@
 <template>
     <v-container class="share-space">
         <v-layout justify-center row wrap>
-            <v-flex xs12 sm4 md5 lg5>
+            <v-flex xs12 sm5 md5 lg5 v-if="!$vuetify.breakpoint.xs">
                 <div class="heads">
                     <h1 class="heading">Share a Space</h1>
                     <p>Four easy steps to share your space</p>
@@ -11,7 +11,7 @@
                 </div>
             </v-flex>
 
-            <v-flex xs12 sm8 md7 lg7 class="text-xs-center forms" elevation-3>
+            <v-flex xs12 sm7 md7 lg7 class="text-xs-center forms" elevation-3>
                 <router-view></router-view>
             </v-flex>
         </v-layout>
@@ -62,6 +62,37 @@ export default {
     .forms{
         min-height: 100vh;
         background: $form-color;
+    }
+}
+@media only screen and (max-width: 960px){
+    .share-space{
+        .heads{
+            width: 80%;
+            margin: 10rem auto;
+            .heading{
+                font-size: 28px;
+                width: fit-content;
+            }
+            p{ margin-bottom: 3rem; }
+            .current{
+                margin-bottom: 1rem;
+                font-size: 18px;
+                span{
+                    background: #333333;
+                    color: #333333;
+                    font-size: 16px;
+                    margin-right: 1rem;
+                }
+                .active{
+                    background: $dark-green;
+                    color: $dark-green;
+                }
+            }
+        }
+        .forms{
+            min-height: 100vh;
+            background: $form-color;
+        }
     }
 }
 </style>

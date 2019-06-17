@@ -2,6 +2,11 @@
     <v-container class="info-form">
         <v-form ref="info">
         <v-layout row wrap>
+            <v-flex xs12 md12 lg12 class="text-xs-left" v-if="$vuetify.breakpoint.xs">
+                <h1 class="heading">Share a Space</h1>
+                <div class="current"><span :class="{'active': $route.path.includes('info')}">-</span> 01. General Information</div>
+            </v-flex>
+
             <v-flex xs12 md12 lg12 class="text-xs-left">
                 <label class="label">Space Name</label>
                 <v-text-field v-model="info.name" required :rules="nameRules" placeholder="Name your space" background-color="#f1f3f2" solo class="info-input"></v-text-field>
@@ -10,7 +15,7 @@
                 <label class="label">Space Type</label><br>
                 <v-checkbox v-for="(a, i) in typeValues" :key="i" color="#20d696" class="type-checkbox" v-model="info.type" :value="a" :label="a"></v-checkbox>
             </v-flex>
-            <v-flex xs3 md3 lg3 class="text-xs-left">
+            <v-flex xs12 md3 lg3 class="text-xs-left">
                 <label class="label">Number of Desks</label>
                 <v-text-field v-model="info.desks" required :rules="nameRules" placeholder="e.g 40" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
@@ -95,6 +100,20 @@ export default {
     .flex{
         padding: 0 1rem !important;
     }
+    .current{
+        margin-bottom: 2rem;
+        font-size: 18px;
+        span{
+            background: #333333;
+            color: #333333;
+            font-size: 16px;
+            margin-right: 1rem;
+        }
+        .active{
+            background: $dark-green;
+            color: $dark-green;
+        }
+    }
     .label{
         color: $text-medium;
         font-size: 14px;
@@ -118,6 +137,8 @@ export default {
         &::placeholder{
             font-size: 14px;
             color: #aaaaaa !important;
+            padding-left: .5rem;
+            padding-right: .5rem;
         }
     }
     .info-input{
@@ -132,11 +153,24 @@ export default {
         background: $dark-green;
         border: $text-medium;
         font-weight: 600;
+        margin: 2rem 0;
         .v-icon{
             font-size: 24px;
             margin-left: 1rem;
             font-weight: 500;
         }
+    }
+}
+@media only screen and (max-width: 550px){
+    .info-form{
+        max-width: 100%;
+        padding: 30px 20px !important;
+    }
+}
+@media only screen and (max-width: 960px){
+    .info-form{
+        max-width: 100%;
+        padding: 30px 20px !important;
     }
 }
 </style>
