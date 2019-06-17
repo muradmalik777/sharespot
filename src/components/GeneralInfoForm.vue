@@ -37,7 +37,7 @@
             </v-flex>
             <v-flex xs12 md12 lg12 class="text-xs-left">
                 <label class="label">How to get there</label>
-                <v-text-field v-model="info.description" required :rules="nameRules" placeholder="enter description" background-color="#f1f3f2" solo class="info-input"></v-text-field>
+                <v-text-field v-model="info.direction" required :rules="nameRules" placeholder="enter description" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs12 md6 lg6 class="text-xs-left">
                 <label class="label">Office Phone Number</label>
@@ -64,13 +64,13 @@
                 <v-text-field prefix="GB" v-model="info.vat" required :rules="nameRules" placeholder="VAT number" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs12 class="text-xs-left">
-                <v-btn flat class="submit">Continue <v-icon>arrow_right_alt</v-icon></v-btn>
+                <v-btn flat class="submit" to="/share/details">Continue <v-icon>arrow_right_alt</v-icon></v-btn>
             </v-flex>
         </v-layout>
         </v-form>
     </v-container>
 </template>
-<script>
+<script>    
 export default {
     name: 'GeneralInfoForm',
     data: function(){
@@ -85,9 +85,7 @@ export default {
         }
     },
     methods: {
-        murad: function(){
-            console.log(this.info)
-        }
+        
     }
 }
 </script>
@@ -137,8 +135,6 @@ export default {
         &::placeholder{
             font-size: 14px;
             color: #aaaaaa !important;
-            padding-left: .5rem;
-            padding-right: .5rem;
         }
     }
     .info-input{
