@@ -24,7 +24,10 @@ body{
    }
 }
 .bg-grey{
-  background: #f1f1f1;
+  background: $form-side;
+}
+.bg-white{
+  background: $form-color;
 }
 .bg-dark1{
   background: $dark1;

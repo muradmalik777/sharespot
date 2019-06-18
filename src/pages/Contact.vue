@@ -119,6 +119,23 @@ export default {
         }
     }
 }
+@media only screen and (max-width: 550px){
+    .contact{
+        .heads{
+            width: 80%;
+            margin: 10rem auto;
+            .heading{
+                font-size: 28px;
+            }
+            p{ margin-bottom: 3rem; }
+        }
+        .forms{
+            padding: 50px 30px 0;
+            min-height: 100vh;
+            background: $form-color;
+        }
+    }
+}
 @media only screen and (max-width: 960px){
     .contact{
         .heads{
@@ -130,6 +147,7 @@ export default {
             p{ margin-bottom: 3rem; }
         }
         .forms{
+            padding: 50px 30px 0;
             min-height: 100vh;
             background: $form-color;
         }
