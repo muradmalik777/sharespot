@@ -28,10 +28,10 @@
                     <p class="c-white m-t-s m-b-s">The Coworker Community that Loves to Share</p>
                 </v-flex>
                 <v-flex xs12 md6 lg5 class="links text-xs-center text-md-right">
-                    <v-btn dark flat>explore</v-btn>
-                    <v-btn dark flat>about</v-btn>
-                    <v-btn dark flat>support</v-btn>
-                    <v-btn dark flat>contact us</v-btn>
+                    <v-btn dark flat to="/explore">explore</v-btn>
+                    <v-btn dark flat to="/about">about</v-btn>
+                    <v-btn dark flat to="/support">support</v-btn>
+                    <v-btn dark flat to="/contact">contact us</v-btn>
                 </v-flex>
             </v-layout>
             <v-layout row wrap class="bottom">

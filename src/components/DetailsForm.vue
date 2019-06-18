@@ -134,7 +134,7 @@ export default {
         padding: .3rem .5rem;
         border-radius: 1px;
         background: $form-side;
-        border: 1px solid $text-light;
+        border: 1px solid #cccccc;
         .time-picker{
             width: 50%;
             display: inline-block;
@@ -184,6 +184,7 @@ export default {
         border: $text-medium;
         font-weight: 600;
         margin: 2rem 0;
+        color: #555555;
         .v-icon{
             font-size: 24px;
             margin-left: 1rem;

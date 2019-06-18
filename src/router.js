@@ -5,6 +5,8 @@ import About from '@/pages/About'
 import Space from '@/pages/Space'
 import Dashboard from '@/pages/Dashboard'
 import ShareSpace from '@/pages/ShareSpace'
+import Contact from '@/pages/Contact'
+import Support from '@/pages/Support'
 import GeneralInfoForm from '@/components/GeneralInfoForm'
 import DetailsForm from '@/components/DetailsForm'
 import PhotosForm from '@/components/DetailsForm'
@@ -32,6 +34,8 @@ export default new Router({
     routes: [
         { path: '/', component: Home },
         { path: '/about', component: About },
+        { path: '/support', component: Support },
+        { path: '/contact', component: Contact },
         { path: '/space/:slug?', component: Space },
         { path: '/dashboard', component: Dashboard, beforeEnter: guard },
         { path: '/share', component: ShareSpace, beforeEnter: guard,
