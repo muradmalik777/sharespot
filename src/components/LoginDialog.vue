@@ -9,8 +9,7 @@
             <v-container fluid fill-height>
                 <v-layout row justify-center align-center>
                     <v-flex xs11 md3 lg2 class="tabs">
-                        <v-tabs v-model="val">
-                            <v-tabs-slider color="#aaaaaa"></v-tabs-slider>
+                        <v-tabs v-model="val" slider-color="#aaaaaa">
                             <v-tab href="#login">Login</v-tab>
                             <v-tab href="#signup">Signup</v-tab>
 
