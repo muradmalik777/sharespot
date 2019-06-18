@@ -16,12 +16,12 @@
                         
                     </v-flex>
                     <v-flex xs12 sm2 md2 lg2>
-                        <h6>Phone</h6>
+                        <h5>Phone</h5>
                         <p>07700 900381</p>
                     </v-flex>
                     <v-flex xs12 sm2 md2 lg2>
-                        <h6>Email</h6>
-                        <p>support@ShareSpot.mt</p>
+                        <h5>Email</h5>
+                        <p><a class="mail" href="mailto:support@sharespot.mt">support@ShareSpot.mt</a></p>
                     </v-flex>
                 </v-layout>
             </v-container>
@@ -284,6 +284,7 @@ export default {
   .heading {
     font-size: 42px;
   }
+  .mail{ color: $dark-green; }
 }
 .faq {
   max-width: 1300px;
