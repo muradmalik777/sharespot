@@ -2,7 +2,7 @@
   <div>
     <hero></hero>
     <cities></cities>
-    <spaces></spaces>
+    <spaces :home="true"></spaces>
   </div>
 </template>
 <script>
