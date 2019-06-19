@@ -1,19 +1,19 @@
 <template>
     <v-container class="explore-search spacing">
         <v-layout row wrap>
-            <v-flex xs10 sm10 md10 lg10 class="text-xs-left">
+            <v-flex xs9 sm10 md10 lg10 class="text-xs-left">
                 <v-text-field v-model="search.data" required :rules="nameRules" placeholder="Name your space" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
-            <v-flex xs2 sm2 md2 lg2 class="text-xs-left">
+            <v-flex xs3 sm2 md2 lg2 class="text-xs-left">
                 <v-btn flat class="search-btn">Search</v-btn>
             </v-flex>
             <v-flex xs12 sm8 md9 lg9 class="text-xs-left">
                 <label class="label">Show</label><br>
                 <v-checkbox v-for="(a, i) in types" :key="i" color="#20d696" class="type-checkbox" v-model="search.type" :value="a" :label="a"></v-checkbox>
             </v-flex>
-            <v-flex xs12 sm4 md3 lg3 class="text-xs-left">
+            <v-flex xs12 sm4 md3 lg3 class="text-xs-left sort">
                 <label class="label">Sort By</label><br>
-                <v-select :items="items" flat background-color="#fafafa" solo class="select-input"></v-select>
+                <v-select :items="items" value="Lowest Price" flat background-color="#fafafa" solo class="select-input"></v-select>
             </v-flex>
         </v-layout>
     </v-container>
@@ -27,7 +27,8 @@ export default {
                 type: []
             },
             types: ["office/desk", "meeting room", "warehouse", "self store"],
-            items: ["Lowest Price", "Highest Price"]
+            items: ["Lowest Price", "Highest Price"],
+            nameRules: [v => !!v || 'Field is required'],
         }
     }    
 }
@@ -70,13 +71,18 @@ export default {
         }
     }
     .type-checkbox{
-        width: fit-content;
+        width: 25%;
         display: inline-block;
-        margin-right: 2rem;
         cursor: pointer;
         text-transform: capitalize;
         label{
             font-size: 14px;
+        }
+        .v-messages{
+            display: none;
+        }
+        .v-input__slot{
+            margin-bottom: 0;
         }
         .v-icon{
             font-size: 20px;
@@ -91,6 +97,27 @@ export default {
         font-weight: 600;
         margin: 2rem 0;
         color: #555555;
+    }
+}
+@media only screen and (max-width: 550px){
+    .explore-search{
+        max-width: 100%;
+        padding: 20px !important;
+        .type-checkbox{
+            width: 50%;
+        }
+        .sort{
+            margin-top: 2rem;
+        }
+    }
+}
+@media only screen and (min-width: 551px) and (max-width: 960px){
+    .explore-search{
+        max-width: 100%;
+        padding: 30px 20px !important;
+        .type-checkbox{
+            width: 33%;
+        }
     }
 }
 </style>
