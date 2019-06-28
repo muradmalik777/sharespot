@@ -10,7 +10,7 @@ Vue.mixin({
             this.$toasted.show(message, {
                 theme: "bubble",
                 position: "top-center",
-                duration: 4000
+                duration: 5000
             });
         },
     },

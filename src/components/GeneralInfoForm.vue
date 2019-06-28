@@ -9,83 +9,101 @@
 
             <v-flex xs12 md12 lg12 class="text-xs-left">
                 <label class="label">Space Name</label>
-                <v-text-field v-model="info.name" required :rules="nameRules" placeholder="Name your space" background-color="#f1f3f2" solo class="info-input"></v-text-field>
+                <v-text-field v-model="space.name" required :rules="nameRules" placeholder="Name your space" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs12 md9 lg9 class="text-xs-left">
                 <label class="label">Space Type</label><br>
-                <v-checkbox v-for="(a, i) in typeValues" :key="i" color="#20d696" class="type-checkbox" v-model="info.type" :value="a" :label="a"></v-checkbox>
+                <v-checkbox v-for="(a, i) in typeValues" :key="i" color="#20d696" class="type-checkbox" v-model="space.type" :value="a" :label="a"></v-checkbox>
             </v-flex>
             <v-flex xs12 md3 lg3 class="text-xs-left">
                 <label class="label">Number of Desks</label>
-                <v-text-field v-model="info.desks" required :rules="nameRules" placeholder="e.g 40" background-color="#f1f3f2" solo class="info-input"></v-text-field>
+                <v-text-field v-model="space.desks" required :rules="nameRules" placeholder="e.g 40" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs12 md6 lg6 class="text-xs-left">
                 <label class="label">Town/City</label>
-                <v-text-field v-model="info.city" required :rules="nameRules" placeholder="e.g London" background-color="#f1f3f2" solo class="info-input"></v-text-field>
+                <v-text-field v-model="space.info.city" required :rules="nameRules" placeholder="e.g London" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs12 md6 lg6 class="text-xs-left">
                 <label class="label">Postal Code</label>
-                <v-text-field v-model="info.postalCode" required :rules="nameRules" placeholder="e.g AB345" background-color="#f1f3f2" solo class="info-input"></v-text-field>
+                <v-text-field v-model="space.info.postalCode" required :rules="nameRules" placeholder="e.g AB345" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs12 md10 lg10 class="text-xs-left">
                 <label class="label">Street Address</label>
-                <v-text-field v-model="info.address" required :rules="nameRules" placeholder="e.g 123 Broadway" background-color="#f1f3f2" solo class="info-input"></v-text-field>
+                <v-text-field v-model="space.info.address" required :rules="nameRules" placeholder="e.g 123 Broadway" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs12 md2 lg2 class="text-xs-left">
                 <label class="label">Unit#</label>
-                <v-text-field v-model="info.unit" required :rules="nameRules" placeholder="e.g 1" background-color="#f1f3f2" solo class="info-input"></v-text-field>
+                <v-text-field v-model="space.info.unit" required :rules="nameRules" placeholder="e.g 1" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs12 md12 lg12 class="text-xs-left">
                 <label class="label">How to get there</label>
-                <v-text-field v-model="info.direction" required :rules="nameRules" placeholder="enter description" background-color="#f1f3f2" solo class="info-input"></v-text-field>
+                <v-text-field v-model="space.info.direction" required :rules="nameRules" placeholder="enter description" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs12 md6 lg6 class="text-xs-left">
                 <label class="label">Office Phone Number</label>
-                <v-text-field v-model="info.phone" required :rules="nameRules" placeholder="your phone number" background-color="#f1f3f2" solo class="info-input"></v-text-field>
+                <v-text-field v-model="space.info.phone" required :rules="nameRules" placeholder="your phone number" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs12 md6 lg6 class="text-xs-left">
                 <label class="label">Contact Email</label>
-                <v-text-field v-model="info.email" required :rules="nameRules" placeholder="your email" background-color="#f1f3f2" solo class="info-input"></v-text-field>
+                <v-text-field v-model="space.info.email" required :rules="nameRules" placeholder="your email" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex class="text-xs-left"><p class="c-dark m-t m-b">Enter the pricing information for each time duration you would like to accept bookings for</p></v-flex>
             <v-flex xs12 md6 lg6 class="text-xs-left">
                 <label class="label">Price/day</label>
-                <v-text-field prefix="£" v-model="info.dayPrice" required :rules="nameRules" placeholder="e.g 50" background-color="#f1f3f2" solo class="info-input"></v-text-field>
+                <v-text-field prefix="£" v-model="space.info.pricePerDay" required :rules="nameRules" placeholder="e.g 50" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs12 md6 lg6 class="text-xs-left">
                 <label class="label">Price/month</label>
-                <v-text-field prefix="£" v-model="info.monthPrice" required :rules="nameRules" placeholder="e.g 50" background-color="#f1f3f2" solo class="info-input"></v-text-field>
+                <v-text-field prefix="£" v-model="space.info.pricePerMonth" required :rules="nameRules" placeholder="e.g 50" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs12 md9 lg9 class="text-xs-left">
-                <v-checkbox color="#20d696" class="type-checkbox" v-model="info.registered" :value="true" label="My company is VAT registered"></v-checkbox>
+                <v-checkbox color="#20d696" class="type-checkbox" v-model="space.info.isRegistered" :value="true" label="My company is VAT registered"></v-checkbox>
             </v-flex>
             <v-flex xs12 md12 lg12 class="text-xs-left">
                 <label class="label">Please provide your VAT number here</label>
-                <v-text-field prefix="GB" v-model="info.vat" required :rules="nameRules" placeholder="VAT number" background-color="#f1f3f2" solo class="info-input"></v-text-field>
+                <v-text-field prefix="GB" v-model="space.info.VAT" required :rules="nameRules" placeholder="VAT number" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs12 class="text-xs-left">
-                <v-btn flat class="submit" to="/share/details">Continue <v-icon>arrow_right_alt</v-icon></v-btn>
+                <v-btn flat class="submit" @click="submit">Continue <v-icon>arrow_right_alt</v-icon></v-btn>
             </v-flex>
         </v-layout>
         </v-form>
     </v-container>
 </template>
-<script>    
+<script>
+import Api from '@/services/Api'
+
 export default {
     name: 'GeneralInfoForm',
     data: function(){
         let data  = this.$store.state.user.email
         return{
-            info: {
-                type: [],
-                email: data
+            space:{
+                type: ["office/desk"],
+                info: {
+                    email: data,
+                    isRegistered: true
+                },
             },
             typeValues: ["office/desk", "meeting room", "warehouse", "self store"],
             nameRules: [v => !!v || 'Field is required'],
         }
     },
+    mounted: function(){
+        if(this.$store.state.newSpace && this.$store.state.newSpace.info){
+            this.$router.push('/share/details')
+        }
+    },
     methods: {
-        
+        submit: function(){
+            if(this.$refs.info.validate()){
+                let $object = new Api('/space/info')
+                $object.post(this.space).then(resp => {
+                    this.$store.commit('setNewSpace', resp)
+                    this.$router.push('/share/details')
+                })
+            }
+        }
     }
 }
 </script>
@@ -93,7 +111,7 @@ export default {
 @import '../assets/scss/variables.scss';
 
 .info-form{
-    max-width: 80%;
+    max-width: 85%;
     margin: 0;
     .flex{
         padding: 0 1rem !important;

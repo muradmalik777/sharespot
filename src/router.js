@@ -10,7 +10,7 @@ import Support from '@/pages/Support'
 import Explore from '@/pages/Explore'
 import GeneralInfoForm from '@/components/GeneralInfoForm'
 import DetailsForm from '@/components/DetailsForm'
-import PhotosForm from '@/components/DetailsForm'
+import PhotosForm from '@/components/PhotosForm'
 
 import store from './store'
 

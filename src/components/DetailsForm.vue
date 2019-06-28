@@ -18,8 +18,8 @@
             </v-flex>
             <v-flex xs8 sm8 md9 lg10 class="text-xs-left" mb-3>
                 <div class="pick-time">
-                    <vue-timepicker v-model="details.to" format="hh:mm A" :minute-interval="5" :hide-clear-button="true"></vue-timepicker>
-                    <vue-timepicker v-model="details.from" format="hh:mm A" :minute-interval="5" :hide-clear-button="true"></vue-timepicker>
+                    <vue-timepicker v-model="details.toDate" format="hh:mm A" :minute-interval="5" :hide-clear-button="true"></vue-timepicker>
+                    <vue-timepicker v-model="details.fromDate" format="hh:mm A" :minute-interval="5" :hide-clear-button="true"></vue-timepicker>
                 </div>
             </v-flex>
             <v-flex xs4 sm4 md3 lg2 class="text-xs-left">
@@ -36,14 +36,14 @@
             </v-flex>
             <v-flex xs12 sm12 md12 lg12 class="text-xs-left" mt-4>
                 <label class="label">Industries</label><br>
-                <v-checkbox v-for="(a, i) in industries" :key="i" color="#20d696" class="type-checkbox" v-model="details.type" :value="a" :label="a"></v-checkbox>
+                <v-checkbox v-for="(a, i) in industries" :key="i" color="#20d696" class="type-checkbox" v-model="details.industry" :value="a" :label="a"></v-checkbox>
             </v-flex>
             <v-flex xs12 sm12 md12 lg12 class="text-xs-left" mt-5>
                 <label class="label">Amenities</label><br>
-                <v-checkbox v-for="(a, i) in amenities" :key="i" color="#20d696" class="type-checkbox" v-model="details.type" :value="a" :label="a"></v-checkbox>
+                <v-checkbox v-for="(a, i) in amenities" :key="i" color="#20d696" class="type-checkbox" v-model="details.amenity" :value="a" :label="a"></v-checkbox>
             </v-flex>
             <v-flex xs12 sm12 md12 lg12 class="text-xs-left" mt-5>
-                <v-btn flat class="submit" to="/share/photos">Continue <v-icon>arrow_right_alt</v-icon></v-btn>
+                <v-btn flat class="submit" @click="submit">Continue <v-icon>arrow_right_alt</v-icon></v-btn>
             </v-flex>
         </v-layout>
         </v-form>
@@ -51,6 +51,7 @@
 </template>
 <script>
 import VueTimepicker from 'vuejs-timepicker'
+import Api from '@/services/Api'
 
 export default {
     name: 'DetailsForm',
@@ -61,24 +62,39 @@ export default {
             details: {
                 type: [],
                 email: data,
-                to: {
+                toDate: {
                     hh: "09",
                     mm: "00",
                     A: "AM"
                 },
-                from: {
+                fromDate: {
                     hh: "09",
                     mm: "00",
                     A: "PM"
                 },
+                industry: [],
+                amenity: []
             },
             industries: ["ecommerce", "webtools/saas", "aedia", "agency", "mobile", "gaming", "vc", "hardware", "socail media", "fintech", "marketing"],
             amenities: ["printing", "meeting rooms", "pets allowed", "lockers", "coffee/tea", "communal area", "parking available", "kitchen", "24h access", "showers", "handicapped access", "bike storage", "wi-fi", "security"],
             nameRules: [v => !!v || 'Field is required'],
         }
     },
+    mounted: function(){
+        if(this.$store.state.newSpace && this.$store.state.newSpace.info && this.$store.state.newSpace.details){
+            this.$router.push('/share/details')
+        }
+    },
     methods: {
-
+        submit: function(){
+            if(this.$refs.details.validate()){
+                let $object = new Api('/space/details')
+                $object.post({spaceId: this.$store.state.newSpace._id, data: this.details}).then(resp => {
+                    this.$store.commit('setNewSpace', resp)
+                    this.$router.push('/share/photos')
+                })
+            }
+        }
     }
 }
 </script>
@@ -86,7 +102,7 @@ export default {
 @import '../assets/scss/variables.scss';
 
 .details-form{
-    max-width: 80%;
+    max-width: 85%;
     margin: 0;
     .flex{
         padding: 0 1rem !important;
