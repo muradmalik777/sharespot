@@ -2,7 +2,7 @@
     <v-container grid-list-lg class="user-payments spacing">
         <v-layout row wrap>
             <v-flex xs12>
-                <h2>Incoming Payments</h2>
+                <h2>Your Earnings</h2>
             </v-flex>
             <v-flex xs12 sm5 md4 lg4>
                 <v-card flat class="user-earning">

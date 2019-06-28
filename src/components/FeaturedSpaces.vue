@@ -2,11 +2,11 @@
     <div class="bg-grey">
     <v-container grid-list-lg class="spaces spacing">
         <v-layout row wrap>
-            <v-flex xs12 md12 lg12>
+            <v-flex xs12 md12 lg12 v-if="home">
                 <h1 class="capitalize">features spaces</h1>
                 <p class="m-b-2">Book from thousands of unique work and meeting spaces</p>
             </v-flex>
-            <v-flex xs12 md4 lg4 v-for="space in 6" @click="$router.push('/space/' + space)" :key="space" class="m-b pointer">
+            <v-flex xs12 sm6 md4 lg4 v-for="space in 3" @click="$router.push('/space/' + space)" :key="space" class="m-b pointer">
                 <v-img contain :src="getImage(space)"></v-img>
                 <v-card flat class="space-details">
                     <p class="uppercase name m-b-s">space host <span class="f-r"><v-icon class="icon">star</v-icon>4.9</span></p>
@@ -22,6 +22,7 @@
 <script>
 export default {
     name: 'FeaturedSpaces',
+    props: ['home'],
     data: function(){
         return{
             spaces: []

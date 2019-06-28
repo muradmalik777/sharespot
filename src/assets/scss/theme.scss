@@ -24,7 +24,10 @@ body{
    }
 }
 .bg-grey{
-  background: #f1f1f1;
+  background: $form-side;
+}
+.bg-white{
+  background: $form-color;
 }
 .bg-dark1{
   background: $dark1;
@@ -35,11 +38,14 @@ body{
 .c-white{
   color: #f1f1f1;
 }
+.c-dark{
+  color: black;
+}
 
 .full-width{
   width: 100%;
 }
 .user-icon{
-  font-size: 18px !important;
+  font-size: 16px !important;
   margin-right: .5rem !important;
 }

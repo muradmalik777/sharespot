@@ -9,11 +9,18 @@ export default new Vuex.Store({
     state: {
         user: {},
         selectedSpace: {},
-        loading: false
+        loading: false,
+        newSpace: {}
     },
     mutations: {
         refreshUser: function (state, user) {
             state.user = user
+        },
+        setNewSpace: function (state, data) {
+            state.newSpace = data
+        },
+        unsetNewSpace: function (state) {
+            state.newSpace = {}
         },
         changeSelectedSpace: function (state, space) {
             state.selectedSpace = space
