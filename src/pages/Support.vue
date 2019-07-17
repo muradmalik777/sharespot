@@ -297,15 +297,19 @@ export default {
             background: transparent;
         }
         .v-tabs__div{
-            width: fit-content;
+            width: 120px;
             a{
+                text-align: center;
                 padding: .5rem 0;
-                margin-right: 2rem;
                 font-size: 22px;
                 font-weight: 600;
                 color: $text-dark;
                 text-transform: capitalize;
             }
+        }
+        .v-tabs__slider{
+            width: 100px;
+            margin: auto;
         }
         .v-window{
             padding: 2rem 0;

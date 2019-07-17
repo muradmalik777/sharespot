@@ -61,7 +61,7 @@
             </v-flex>
             <v-flex xs12 md12 lg12 class="text-xs-left">
                 <label class="label">Please provide your VAT number here</label>
-                <v-text-field prefix="GB" v-model="space.info.VAT" required :rules="nameRules" placeholder="VAT number" background-color="#f1f3f2" solo class="info-input"></v-text-field>
+                <v-text-field prefix="MT" v-model="space.info.VAT" required :rules="nameRules" placeholder="VAT number" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs12 class="text-xs-left">
                 <v-btn flat class="submit" @click="submit">Continue <v-icon>arrow_right_alt</v-icon></v-btn>

@@ -173,6 +173,7 @@ export default {
     }
     .login, .signup{
         padding: 1.5rem 0;
+        width: 100%;
 
         .social-links{
             margin: 1rem 0;
