@@ -22,7 +22,10 @@
                 <v-text-field v-model="video" required placeholder="Add video URL" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs3 sm2 md2 lg2 class="text-xs-left">
-                <v-btn flat class="search-btn">Add Video</v-btn>
+                <v-btn flat class="search-btn" @click="addVideo">Add Video</v-btn>
+            </v-flex>
+            <v-flex xs12 md12 lg12 class="text-xs-left">
+                <iframe class="video-preview" v-for="(video, i) in request.videos" :key="i" :src="video"></iframe>
             </v-flex>
         </v-layout>
     </v-container>
@@ -38,10 +41,11 @@ export default {
     },
     data: function(){
         return{
-            data: {
-                images: []
+            request: {
+                images: [],
+                videos: []
             },
-            video
+            video: null
         }
     },
     methods: {
@@ -51,14 +55,18 @@ export default {
             console.log(fileList)
         },
         beforeRemove (index, done, fileList) {
-            console.log('index', index, fileList)
             var r = confirm("Remove this image")
             if (r == true) {
                 done()
             }
         },
-        editImage (formData, index, fileList) {
-        console.log('edit data', formData, index, fileList)
+        editImage (formData, index, fileList) {},
+        addVideo: function(){
+            console.log(this.video)
+            if(this.video){
+                this.request.videos.push(this.video.replace("watch", "embed"))
+                this.video = null
+            }
         }
     }
 }
@@ -155,6 +163,11 @@ export default {
         color: #555555;
         border: 1px solid #cccccc !important;
         border-left: none !important;
+    }
+    .video-preview{
+        width: 150px;
+        height: 150px;
+        margin-left: 1rem;
     }
 }
 </style>
