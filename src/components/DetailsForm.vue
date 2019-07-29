@@ -80,11 +80,6 @@ export default {
             nameRules: [v => !!v || 'Field is required'],
         }
     },
-    mounted: function(){
-        if(this.$store.state.newSpace && this.$store.state.newSpace.info && this.$store.state.newSpace.details){
-            this.$router.push('/share/details')
-        }
-    },
     methods: {
         submit: function(){
             if(this.$refs.details.validate()){

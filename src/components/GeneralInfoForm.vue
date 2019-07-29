@@ -90,8 +90,8 @@ export default {
         }
     },
     mounted: function(){
-        if(this.$store.state.newSpace && this.$store.state.newSpace.info){
-            this.$router.push('/share/details')
+        if(this.$store.state.newSpace){
+            this.$router.push('/share/photos')
         }
     },
     methods: {

@@ -51,7 +51,7 @@ export default {
     }
     .box {
       position: absolute;
-      top: 20%;
+      top: 30%;
       left: 27.5%;
       width: 45%;
       h1 {
