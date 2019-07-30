@@ -195,7 +195,8 @@ export default {
         border: $text-medium;
         font-weight: 600;
         margin: 2rem 0;
-        color: #555555;
+        color: $dark2;
+        text-transform: capitalize;
         .v-icon{
             font-size: 24px;
             margin-left: 1rem;

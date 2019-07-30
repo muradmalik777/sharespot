@@ -1,13 +1,13 @@
 <template>
     <v-container grid-list-xl class="user-spaces spacing">
         <v-layout row wrap>
-            <v-flex xs12 sm6 md4 lg4 v-for="space in 3" :key="space">
-                <v-img contain :src="getImage(space)"></v-img>
+            <v-flex xs12 sm6 md4 lg4 v-for="(space, i) in userSpaces" :key="i">
+                <v-img class="user-space-image" :src="getImage(space.photos.photos)"></v-img>
                 <v-card flat class="space-details">
-                    <p class="uppercase name m-b-s">space host <span class="f-r"><v-icon class="icon">star</v-icon>4.9</span></p>
-                    <h2 class="capitalize">space host</h2>
-                    <p class="uppercase location m-t-s"><v-icon class="icon">location_on</v-icon> 14 Bedford Square, WC1B 3JA, London</p>
-                    <h4 class="price m-t">£56/day</h4>
+                    <p class="uppercase name m-b-s">{{space.name}} <span class="f-r"><v-icon class="icon">star</v-icon>4.9</span></p>
+                    <h2 class="capitalize">{{space.name}}</h2>
+                    <p class="uppercase location m-t-s"><v-icon class="icon">location_on</v-icon> {{space.info.direction}}</p>
+                    <h4 class="price m-t">{{"£" + space.info.pricePerDay + "/day"}}</h4>
                 </v-card>
                 <v-card flat class="user-space-actions">
                     <v-btn flat class="user-space-btn">Manage</v-btn>
@@ -19,15 +19,33 @@
     </v-container>
 </template>
 <script>
+import Api from '@/services/Api'
+
 export default {
   name: "UserSpaces",
   data: function() {
-    return {};
+    return {
+        userSpaces: []
+    };
+  },
+  mounted: function(){
+      this.getUserSpaces()
   },
   methods: {
-    getImage: function(index){
-        return require('../assets/images/space' + (index) + ".jpg")
+    getImage: function(photos){
+        let $obj = new Api()
+        return $obj.base_url+'/'+ photos[0]
     },
+    getUserSpaces: function(){
+        let $object = new Api('/space/user')
+        let params = {
+            user_id: this.$store.state.user._id
+        }
+        $object.getList(params).then(resp => {
+            this.userSpaces = resp
+            console.log(resp)
+        })
+    }
   }
 };
 </script>
@@ -36,7 +54,9 @@ export default {
 
 .user-spaces {
   max-width: 1300px;
-
+  .user-space-image{
+      height: 220px;
+  }
   .space-details{
         padding: 20px;
         border: 1px solid #dddddd;
@@ -74,7 +94,8 @@ export default {
             }
         }
         .promote-btn{
-            height: 50px;
+            height: 60px;
+            margin: 0;
             .icon{
                 color: red;
                 font-size: 18px !important;

@@ -4,16 +4,23 @@
             <v-flex xs12 md12 lg12 class="text-xs-left">
                 <h2 class="p-l">Photos</h2>
             </v-flex>
-            <v-flex xs12 md12 lg12 class="text-xs-left">
-                <vue-upload-multiple-image
-                dragText="Drag and Drop"
-                browseText="Browse Photos"
-                :maxImage="10"
-                @upload-success="uploadImageSuccess"
-                @before-remove="beforeRemove"
-                @edit-image="editImage">
-                Murad MAlik
-                </vue-upload-multiple-image>
+            <v-flex xs12 md12 lg12 class="text-xs-center">
+                <div class="upload-container">
+                    <h2 class="t-c drag-drop" v-show="$refs.upload && $refs.upload.drop">Drag and drop</h2>
+                    <file-upload
+                        ref="upload"
+                        v-model="images"
+                        :maximum="10"
+                        :drop="true"
+                        :multiple="true"
+                        @input="updateFiles">
+                        Browse Photos
+                    </file-upload>
+
+                    <div class="file-preview">
+                        <v-img class="file-image" v-for="(item, i) in previews" :key="i" :src="item"></v-img>
+                    </div>
+                </div>
             </v-flex>
             <v-flex xs12 md12 lg12 mt-3 class="text-xs-left">
                 <h2 class="p-l">Videos</h2>
@@ -22,51 +29,60 @@
                 <v-text-field v-model="video" required placeholder="Add video URL" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs3 sm2 md2 lg2 class="text-xs-left">
-                <v-btn flat class="search-btn" @click="addVideo">Add Video</v-btn>
+                <v-btn flat class="add-btn" @click="addVideo">Add Video</v-btn>
             </v-flex>
             <v-flex xs12 md12 lg12 class="text-xs-left">
-                <iframe class="video-preview" v-for="(video, i) in request.videos" :key="i" :src="video"></iframe>
+                <iframe class="video-preview" v-for="(video, i) in videos" :key="i" :src="video"></iframe>
+            </v-flex>
+            <v-flex xs12 md12 lg12 class="text-xs-left">
+                <v-btn flat class="submit" @click="submit">Share This Space Now</v-btn>
             </v-flex>
         </v-layout>
     </v-container>
 </template>
 <script>
 import Api from '@/services/Api'
-import VueUploadMultipleImage from 'vue-upload-multiple-image'
+import VueUploadComponent from 'vue-upload-component'
 
 export default {
     name: 'PhotosForm',
     components: {
-        VueUploadMultipleImage,
+        'file-upload': VueUploadComponent
     },
     data: function(){
         return{
-            request: {
-                images: [],
-                videos: []
-            },
-            video: null
+            images: [],
+            videos: [],
+            video: null,
+            previews: []
         }
     },
     methods: {
-        uploadImageSuccess: function(formData, index, fileList){
-            console.log(formData)
-            console.log(index)
-            console.log(fileList)
+        updateFiles: function(data){
+            this.images = data
+            this.images.forEach(a => {
+                this.previews.push(window.URL.createObjectURL(a.file))
+            })
         },
-        beforeRemove (index, done, fileList) {
-            var r = confirm("Remove this image")
-            if (r == true) {
-                done()
-            }
-        },
-        editImage (formData, index, fileList) {},
         addVideo: function(){
-            console.log(this.video)
             if(this.video){
-                this.request.videos.push(this.video.replace("watch", "embed"))
+                this.videos.push(this.video.replace("watch", "embed"))
                 this.video = null
             }
+        },
+        submit: function(){
+            let $object = new Api('/space/photos')
+            let formData = new FormData()
+            this.images.forEach(image => {
+                formData.append('images', image.file)
+            })
+            this.videos.forEach(video => {
+                formData.append('videos', video)
+            })
+            formData.append('space_id', this.$store.state.newSpace._id)
+            $object.post(formData).then(resp => {
+                this.$router.push('/dashboard')
+            })
         }
     }
 }
@@ -77,66 +93,35 @@ export default {
 .photos-form{
     max-width: 85%;
     margin: 0;
-
-    .image-container{
+    .upload-container{
+        border: 1px solid #cccccc;
         width: calc(100% - 16px);
-        height: 350px;
-        margin: 1rem;
-        .image-icon-drag{
-            display: none;
-        }
-        .drag-text{
-            font-size: 36px;
-            font-family: 'sharespot-Light' !important;
-        }
-        .browse-text{
-            font-size: 18px;
-            color: $dark-green !important;
-            text-decoration: underline;
-        }
-        .preview-image{
-            width: 100%;
-            height: 310px;
-            padding: 0;
-            .image-overlay{
-                // height: 360px;
-            }
-            .show-image{
-                width: 100%;
-                height: 300px;
-                .show-img{
-                    max-width: 100%;
-                    max-height: 300px;
-                    display: block;
-                    margin: auto;
-                }
-            }
-        }
-        .image-bottom{
-            .image-bottom-left{
-                display: none;
-            }
-        }
-    }
-    .image-list-container{
-        max-width: 100%;
-        max-height: 100px;
-        margin: 1rem;
-        .image-list-item{
-            width: 100px;
-            height: 100px;
-            border: none;
-            .show-img{
-                max-width: 100px;
-                max-height: 90px;
-            }
-            .icon.add-image-svg{
-                width: 30px;
-                height: 30px;
-            }
-        }
-    }
+        min-height: 350px;
+        overflow: auto;
+        margin: 1rem 0 0 1rem;
+        padding-top: 2rem;
+        color: $dark-green !important;
+        position: relative;
 
+        .file-uploads{
+            label{
+                cursor: pointer !important;
+            }
+        }
+        .file-preview{
+            position: absolute;
+            bottom: 0;
+            width: calc(100% - 16px);
+            margin: 1rem 0 0 1rem;
+            height: 150px;
+            .file-image{
+                width: 100px;
+                height: 100px;
+                margin: 1rem;
+                float: left;
+            }       
+        }
+    }
     input{
         font-size: 14px;
         &::placeholder{
@@ -153,7 +138,7 @@ export default {
             box-shadow: none !important;
         }
     }
-    .search-btn{
+    .add-btn{
         width: 100%;
         height: 70px;
         background: #f1f3f2;
@@ -168,6 +153,15 @@ export default {
         width: 150px;
         height: 150px;
         margin-left: 1rem;
+    }
+    .submit{
+        height: 60px;
+        background: $dark-green;
+        border: $text-medium;
+        font-weight: 600;
+        margin: 2rem 1rem;
+        color: $dark2;
+        text-transform: capitalize;
     }
 }
 </style>

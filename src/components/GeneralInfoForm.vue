@@ -89,15 +89,16 @@ export default {
             nameRules: [v => !!v || 'Field is required'],
         }
     },
-    mounted: function(){
-        if(this.$store.state.newSpace){
-            this.$router.push('/share/photos')
-        }
-    },
+    // mounted: function(){
+    //     if(this.$store.state.newSpace){
+    //         this.$router.push('/share/photos')
+    //     }
+    // },
     methods: {
         submit: function(){
             if(this.$refs.info.validate()){
                 let $object = new Api('/space/info')
+                this.space.user_id = this.$store.state.user._id
                 $object.post(this.space).then(resp => {
                     this.$store.commit('setNewSpace', resp)
                     this.$router.push('/share/details')
@@ -168,7 +169,8 @@ export default {
         border: $text-medium;
         font-weight: 600;
         margin: 2rem 0;
-        color: #555555;
+        color: $dark2;
+        text-transform: capitalize;
         .v-icon{
             font-size: 24px;
             margin-left: 1rem;
