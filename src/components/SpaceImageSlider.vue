@@ -11,10 +11,10 @@
                 </v-carousel>
             </v-flex>
             <v-flex xs12 md12 lg12 class="space-title spacing text-xs-center">
-                <p class="uppercase" v-if="space.type.length > 1"><span v-for="(type, i) in space.type" :key="i">{{type}}</span></p>
+                <p class="uppercase" v-if="space.type.length > 1"><span v-for="(type, i) in space.type" :key="i">{{type + ", "}}</span></p>
                 <p class="uppercase" v-else><span>{{space.type[0]}}</span></p>
                 <h1 class="capitalize">{{space.name}}</h1>
-                <p class="uppercase location m-t-s"><v-icon class="icon">location_on</v-icon> 14 Bedford Square, WC1B 3JA, London <span class="m-l"><v-icon class="icon">star</v-icon>4.9</span></p>
+                <h4 class="uppercase location m-t-s"><v-icon class="icon">location_on</v-icon> {{space.info.address}} <span class="m-l"><v-icon class="icon">star</v-icon>4.9</span></h4>
             </v-flex>
         </v-layout>
     </v-container>
@@ -57,7 +57,8 @@ export default {
             color: $text-medium;
             .icon{
                 width: fit-content;
-                font-size: 18px;
+                font-size: 20px;
+                margin-bottom: .1rem;
                 margin-right: 5px;
             }
         }

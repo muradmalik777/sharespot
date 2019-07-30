@@ -2,7 +2,7 @@
     <v-container class="explore-search spacing">
         <v-layout row wrap>
             <v-flex xs9 sm10 md10 lg10 class="text-xs-left">
-                <v-text-field v-model="search.name" placeholder="Search space by name" background-color="#f1f3f2" solo class="info-input"></v-text-field>
+                <v-text-field v-model="search.name" placeholder="Search space by address or city" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs3 sm2 md2 lg2 class="text-xs-left">
                 <v-btn flat class="search-btn" @click="searchSpace">Search</v-btn>
@@ -63,10 +63,10 @@ export default {
     data: function(){
         return{
             search: {
-                type: ["office/desk"],
+                type: [],
                 price:100,
-                industry: ["ecommerce", "gaming", "agency", "marketing"],
-                amenity: ["parking available", "meeting rooms", "kitchen", "lockers", "coffee/tea"]
+                industry: [],
+                amenity: []
             },
             industries: ["ecommerce", "webtools/saas", "aedia", "agency", "mobile", "gaming", "vc", "hardware", "socail media", "fintech", "marketing"],
             amenities: ["printing", "meeting rooms", "pets allowed", "lockers", "coffee/tea", "communal area", "parking available", "kitchen", "24h access", "showers", "handicapped access", "bike storage", "wi-fi", "security"],
