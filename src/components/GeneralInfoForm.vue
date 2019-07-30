@@ -98,7 +98,7 @@ export default {
         submit: function(){
             if(this.$refs.info.validate()){
                 let $object = new Api('/space/info')
-                this.space.user_id = this.$store.state.user._id
+                this.space.user = this.$store.state.user
                 $object.post(this.space).then(resp => {
                     this.$store.commit('setNewSpace', resp)
                     this.$router.push('/share/details')
