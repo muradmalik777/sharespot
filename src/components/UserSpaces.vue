@@ -43,7 +43,6 @@ export default {
         }
         $object.getList(params).then(resp => {
             this.userSpaces = resp
-            console.log(resp)
         })
     }
   }
