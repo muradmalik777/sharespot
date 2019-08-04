@@ -158,7 +158,6 @@ export default {
         height: 60px;
         background: $dark-green;
         border: $text-medium;
-        font-weight: 600;
         margin: 2rem 1rem;
         color: $dark2;
         text-transform: capitalize;

@@ -64,7 +64,7 @@ export default {
         return{
             search: {
                 type: [],
-                price:100,
+                price:300,
                 industry: [],
                 amenity: []
             },
@@ -150,9 +150,8 @@ export default {
         height: 70px;
         background: $dark-green;
         border: $text-medium;
-        font-weight: 600;
         margin: 1rem 0;
-        color: #555555;
+        color: $dark2;
     }
     .filters{
         .v-expansion-panel{

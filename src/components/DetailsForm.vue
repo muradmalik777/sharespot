@@ -193,7 +193,6 @@ export default {
         height: 60px;
         background: $dark-green;
         border: $text-medium;
-        font-weight: 600;
         margin: 2rem 0;
         color: $dark2;
         text-transform: capitalize;
