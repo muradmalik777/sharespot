@@ -4,7 +4,7 @@
             <search></search>
         </div>
         <div class="bg-grey results">
-            <results :home="false" :spaceData="spaces"></results>
+            <results :home="false" :spaces="featuredSpaces"></results>
         </div>
     </div>
 </template>
@@ -21,7 +21,7 @@ export default {
     },
     data: function(){
         return{
-            spaces: []
+            featuredSpaces: []
         }
     },
     mounted: function(){
@@ -31,7 +31,7 @@ export default {
       getSpaces: function(){
         let $object = new Api('/space')
         $object.getList().then(resp => {
-          this.spaces = resp.items
+          this.featuredSpaces = resp.items
         })
       }
     }

@@ -9,9 +9,9 @@
             <v-container fluid fill-height>
                 <v-layout row justify-center align-center>
                     <v-flex xs11 md4 lg3 class="profile">
-                        <h2>Edit Profile</h2>
-                        <div class="login">
-                            <v-form ref="login" lazy-validation @keyup.native.enter="login">
+                        <h2>Personal Information</h2>
+                        <div class="name">
+                            <v-form ref="user" lazy-validation @keyup.native.enter="login">
                                 <v-text-field
                                     v-model="user.name"
                                     :rules="nameRules"
@@ -29,9 +29,10 @@
                                     type="email"
                                     background-color="#aaaaaa"
                                     outline
+                                    readonly
                                     required>
                                 </v-text-field>
-                                <v-btn class="full-width login-btn" @click="login">Save</v-btn>
+                                <v-btn class="full-width login-btn" :loading="nameLoading" @click="save">Save</v-btn>
                             </v-form>
                         </div>
 
@@ -41,7 +42,7 @@
                                     <h2>Change Password</h2>
                                 </template>
                                 <div class="password">
-                                    <v-form ref="login" lazy-validation @keyup.native.enter="login">
+                                    <v-form ref="password" lazy-validation @keyup.native.enter="login">
                                         <v-text-field
                                             v-model="newPassword"
                                             :rules="passwordRules"
@@ -55,13 +56,13 @@
                                         <v-text-field
                                             v-model="confirmPassword"
                                             :rules="confirmPasswordRules"
-                                            label="Confirm Password"
+                                            label="Confirm New Password"
                                             type="password"
                                             background-color="#aaaaaa"
                                             outline
                                             required>
                                         </v-text-field>
-                                        <v-btn class="full-width login-btn" @click="login">Save</v-btn>
+                                        <v-btn class="full-width login-btn" :loading="passwordLoading" @click="changePassword">Change Password</v-btn>
                                     </v-form>
                                 </div>
                             </v-expansion-panel-content>
@@ -93,6 +94,8 @@ export default {
                 v => !!v || "E-mail is required",
                 v => /.+@.+/.test(v) || "E-mail must be valid"
             ],
+            nameLoading: false,
+            passwordLoading: false
         }
     },
     created: function(){
@@ -102,13 +105,33 @@ export default {
         closeDialog: function(){
             this.$emit('close')
         },
-        login: function(){
-            if(this.$refs.login.validate()){
-                let $object  = new Api('/user/login')
-                $object.post(this.loginData).then(resp => {
+        save: function(){
+            if(this.$refs.user.validate()){
+                this.nameLoading = true
+                let $object  = new Api('/user')
+                $object.put(this.user._id, this.user).then(resp => {
                     this.$store.commit('refreshUser', resp)
                     this.closeDialog()
+                    this.nameLoading = false
+                    this.showMessage("Details Updated")
                 }).catch((error) => {
+                    this.nameLoading = false
+                    this.showMessage(error.response.data.message)
+                })
+            } 
+        },
+        changePassword: function(){
+            if(this.$refs.password.validate()){
+                this.passwordLoading = true
+                this.user.password = this.newPassword
+                let $object  = new Api('/user')
+                $object.put(this.user._id, this.user).then(resp => {
+                    this.$store.commit('refreshUser', resp)
+                    this.closeDialog()
+                    this.passwordLoading = false
+                    this.showMessage("Password Changed")
+                }).catch((error) => {
+                    this.passwordLoading = false
                     this.showMessage(error.response.data.message)
                 })
             } 
@@ -127,7 +150,7 @@ export default {
     h2,h3,h4{
         color: $white;
     }
-    .login, .password{
+    .name, .password{
         padding: 1.5rem 0;
         width: 100%;
 

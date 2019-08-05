@@ -6,7 +6,7 @@
                 <h1 class="capitalize">features spaces</h1>
                 <p class="m-b-2">Book from thousands of unique work and meeting spaces</p>
             </v-flex>
-            <v-flex xs12 sm6 md4 lg4 v-for="(space, i) in spaces" :key="i" @click="displaySpace(space)" class="m-b pointer">
+            <v-flex xs12 sm6 md4 lg4 v-for="(space, i) in $props.spaces" :key="i" @click="displaySpace(space)" class="m-b pointer">
                 <v-img class="space-image" :src="getImage(space.photos.photos)"></v-img>
                 <v-card flat class="space-details">
                     <p class="uppercase name m-b-s">{{space.user.name}} <span class="f-r"><v-icon class="icon">star</v-icon>4.9</span></p>
@@ -24,18 +24,10 @@ import Api from '@/services/Api'
 
 export default {
     name: 'FeaturedSpaces',
-    props: ['home', 'spaceData'],
+    props: ['home', 'spaces'],
     data: function(){
         return{
-            spaces: []
-        }
-    },
-    mounted: function(){
-        this.spaces = this.$props.spaceData
-    },
-    watch: {
-        spaceData: function(newVal, oldVal){
-            this.spaces = newVal
+
         }
     },
     methods: {

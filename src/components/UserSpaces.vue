@@ -4,7 +4,7 @@
             <v-flex xs12 sm6 md4 lg4 v-for="(space, i) in userSpaces" :key="i">
                 <v-img class="user-space-image" :src="getImage(space.photos.photos)"></v-img>
                 <v-card flat class="space-details">
-                    <p class="uppercase name m-b-s">{{space.name}} <span class="f-r"><v-icon class="icon">star</v-icon>4.9</span></p>
+                    <p class="uppercase name m-b-s">{{space.user.name}} <span class="f-r"><v-icon class="icon">star</v-icon>4.9</span></p>
                     <h2 class="capitalize">{{space.name}}</h2>
                     <p class="uppercase location m-t-s"><v-icon class="icon">location_on</v-icon> {{space.info.direction}}</p>
                     <h4 class="price m-t">{{"£" + space.info.pricePerDay + "/day"}}</h4>
