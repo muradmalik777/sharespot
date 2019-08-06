@@ -8,7 +8,7 @@
             </v-flex>
             <v-flex xs12 sm12 md12 lg12 class="text-xs-left">
                 <label class="label">About</label>
-                <v-textarea v-model="details.about" required no-resize solo :rules="nameRules" placeholder="Name your space" background-color="#f1f3f2" class="info-input"></v-textarea>
+                <v-textarea v-model="space.details.about" required no-resize solo :rules="nameRules" placeholder="Name your space" background-color="#f1f3f2" class="info-input"></v-textarea>
             </v-flex>
             <v-flex xs12 sm12 md12 lg12 class="text-xs-left" mt-4 mb-4>
                 <p>Opening Hours</p>
@@ -18,32 +18,33 @@
             </v-flex>
             <v-flex xs8 sm8 md9 lg10 class="text-xs-left" mb-3>
                 <div class="pick-time">
-                    <vue-timepicker v-model="details.toDate" format="hh:mm A" :minute-interval="5" :hide-clear-button="true"></vue-timepicker>
-                    <vue-timepicker v-model="details.fromDate" format="hh:mm A" :minute-interval="5" :hide-clear-button="true"></vue-timepicker>
+                    <vue-timepicker v-model="space.details.toDate" format="hh:mm A" :minute-interval="5" :hide-clear-button="true"></vue-timepicker>
+                    <vue-timepicker v-model="space.details.fromDate" format="hh:mm A" :minute-interval="5" :hide-clear-button="true"></vue-timepicker>
                 </div>
             </v-flex>
             <v-flex xs4 sm4 md3 lg2 class="text-xs-left">
                 <label class="label">Saturday</label>
             </v-flex>
             <v-flex xs8 sm8 md9 lg10 class="text-xs-left">
-                <v-checkbox color="#20d696" class="time-checkbox" v-model="details.saturday" :value="false" label="Open"></v-checkbox>
+                <v-checkbox color="#20d696" class="time-checkbox" v-model="space.details.saturday" :value="false" label="Open"></v-checkbox>
             </v-flex>
             <v-flex xs4 sm4 md3 lg2 class="text-xs-left">
                 <label class="label">Sunday</label>
             </v-flex>
             <v-flex xs8 sm8 md9 lg10 class="text-xs-left">
-                <v-checkbox color="#20d696" class="time-checkbox" v-model="details.sunday" :value="false" label="Open"></v-checkbox>
+                <v-checkbox color="#20d696" class="time-checkbox" v-model="space.details.sunday" :value="false" label="Open"></v-checkbox>
             </v-flex>
             <v-flex xs12 sm12 md12 lg12 class="text-xs-left" mt-4>
                 <label class="label">Industries</label><br>
-                <v-checkbox v-for="(a, i) in industries" :key="i" color="#20d696" class="type-checkbox" v-model="details.industry" :value="a" :label="a"></v-checkbox>
+                <v-checkbox v-for="(a, i) in industries" :key="i" color="#20d696" class="type-checkbox" v-model="space.details.industry" :value="a" :label="a"></v-checkbox>
             </v-flex>
             <v-flex xs12 sm12 md12 lg12 class="text-xs-left" mt-5>
                 <label class="label">Amenities</label><br>
-                <v-checkbox v-for="(a, i) in amenities" :key="i" color="#20d696" class="type-checkbox" v-model="details.amenity" :value="a" :label="a"></v-checkbox>
+                <v-checkbox v-for="(a, i) in amenities" :key="i" color="#20d696" class="type-checkbox" v-model="space.details.amenity" :value="a" :label="a"></v-checkbox>
             </v-flex>
             <v-flex xs12 sm12 md12 lg12 class="text-xs-left" mt-5>
-                <v-btn flat class="submit" @click="submit">Continue <v-icon>arrow_right_alt</v-icon></v-btn>
+                 <v-btn flat class="submit" @click="save" v-if="this.$store.state.editSpace">Save <v-icon>arrow_right_alt</v-icon></v-btn>
+                <v-btn flat class="submit" @click="submit" v-else>Continue <v-icon>arrow_right_alt</v-icon></v-btn>
             </v-flex>
         </v-layout>
         </v-form>
@@ -59,25 +60,32 @@ export default {
     data: function(){
         let data  = this.$store.state.user.email
         return{
-            details: {
-                type: [],
-                email: data,
-                toDate: {
-                    hh: "09",
-                    mm: "00",
-                    A: "AM"
-                },
-                fromDate: {
-                    hh: "09",
-                    mm: "00",
-                    A: "PM"
-                },
-                industry: [],
-                amenity: []
+            space: {
+                details: {
+                    type: [],
+                    email: data,
+                    toDate: {
+                        hh: "09",
+                        mm: "00",
+                        A: "AM"
+                    },
+                    fromDate: {
+                        hh: "09",
+                        mm: "00",
+                        A: "PM"
+                    },
+                    industry: [],
+                    amenity: []
+                }
             },
             industries: ["ecommerce", "webtools/saas", "aedia", "agency", "mobile", "gaming", "vc", "hardware", "socail media", "fintech", "marketing"],
             amenities: ["printing", "meeting rooms", "pets allowed", "lockers", "coffee/tea", "communal area", "parking available", "kitchen", "24h access", "showers", "handicapped access", "bike storage", "wi-fi", "security"],
             nameRules: [v => !!v || 'Field is required'],
+        }
+    },
+    mounted: function(){
+        if(this.$store.state.editSpace){
+            this.space = this.$store.state.editSpace
         }
     },
     methods: {
@@ -87,6 +95,17 @@ export default {
                 $object.post({spaceId: this.$store.state.newSpace._id, data: this.details}).then(resp => {
                     this.$store.commit('setNewSpace', resp)
                     this.$router.push('/share/photos')
+                })
+            }
+        },
+        save: function(){
+            if(this.$refs.details.validate()){
+                let $object = new Api('/space')
+                $object.put(this.space._id, this.space).then(resp => {
+                    this.$store.commit('unsetEditSpace')
+                    this.showMessage(resp.message)
+                    this.$router.push('/dashboard')
+
                 })
             }
         }

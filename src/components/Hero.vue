@@ -6,7 +6,7 @@
                 <div class="overlay"></div>
                 <div class="box">
                     <h1 class="capitalize t-c">share some space</h1>
-                    <v-btn to="/share" class="hero-btn m-t-3 capitalize">share your space now</v-btn>
+                    <v-btn to="/share/info" class="hero-btn m-t-3 capitalize">share your space now</v-btn>
                     <p class="m-t">Share your Space and Earn Money without putting any extra efforts</p>
                 </div>
             </v-flex>

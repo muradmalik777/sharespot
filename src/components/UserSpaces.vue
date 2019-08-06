@@ -11,7 +11,7 @@
                 </v-card>
                 <v-card flat class="user-space-actions">
                     <v-btn flat class="user-space-btn">Manage</v-btn>
-                    <v-btn flat class="user-space-btn">Edit</v-btn>
+                    <v-btn @click="editSpace(space)" flat class="user-space-btn">Edit</v-btn>
                     <v-btn flat color="red" class="full-width capitalize promote-btn"><v-icon class="icon m-r">fas fa-bookmark</v-icon> promote this space</v-btn>
                 </v-card>
             </v-flex>
@@ -44,6 +44,10 @@ export default {
         $object.getList(params).then(resp => {
             this.userSpaces = resp
         })
+    },
+    editSpace: function(space){
+        this.$store.commit('setEditSpace', space)
+        this.$router.push('/edit/info')
     }
   }
 };

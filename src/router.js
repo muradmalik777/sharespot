@@ -47,5 +47,12 @@ export default new Router({
                 { path: 'photos', component: PhotosForm },
             ]
         },
+        {
+            path: '/edit', component: ShareSpace, beforeEnter: guard,
+            children: [
+                { path: 'info', component: GeneralInfoForm },
+                { path: 'details', component: DetailsForm },
+            ]
+        },
     ]
 })

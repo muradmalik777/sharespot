@@ -64,7 +64,8 @@
                 <v-text-field prefix="MT" v-model="space.info.VAT" required :rules="nameRules" placeholder="VAT number" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs12 class="text-xs-left">
-                <v-btn flat class="submit" @click="submit">Continue <v-icon>arrow_right_alt</v-icon></v-btn>
+                <v-btn flat class="submit" @click="save" v-if="this.$store.state.editSpace">Save <v-icon>arrow_right_alt</v-icon></v-btn>
+                <v-btn flat class="submit" @click="submit" v-else>Continue <v-icon>arrow_right_alt</v-icon></v-btn>
             </v-flex>
         </v-layout>
         </v-form>
@@ -89,11 +90,11 @@ export default {
             nameRules: [v => !!v || 'Field is required'],
         }
     },
-    // mounted: function(){
-    //     if(this.$store.state.newSpace){
-    //         this.$router.push('/share/photos')
-    //     }
-    // },
+    mounted: function(){
+        if(this.$store.state.editSpace){
+            this.space = this.$store.state.editSpace
+        }
+    },
     methods: {
         submit: function(){
             if(this.$refs.info.validate()){
@@ -103,6 +104,12 @@ export default {
                     this.$store.commit('setNewSpace', resp)
                     this.$router.push('/share/details')
                 })
+            }
+        },
+        save: function(){
+            if(this.$refs.info.validate()){
+                this.$store.commit('setEditSpace', this.space)
+                this.$router.push('/share/details')
             }
         }
     }
