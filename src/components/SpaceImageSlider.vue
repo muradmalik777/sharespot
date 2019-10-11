@@ -4,42 +4,38 @@
             <v-flex xs12 md12 lg12>
                 <v-carousel height="600" hide-delimiters>
                     <v-carousel-item
-                    v-for="(item,i) in spaceImages"
+                    v-for="(item,i) in space.photos.photos"
                     :key="i"
-                    :src="item"
+                    :src="getImage(item)"
                     ></v-carousel-item>
                 </v-carousel>
             </v-flex>
             <v-flex xs12 md12 lg12 class="space-title spacing text-xs-center">
-                <p class="uppercase">office</p>
-                <h1>Interchange - Atrium</h1>
-                <p class="uppercase location m-t-s"><v-icon class="icon">location_on</v-icon> 14 Bedford Square, WC1B 3JA, London <span class="m-l"><v-icon class="icon">star</v-icon>4.9</span></p>
+                <p class="uppercase" v-if="space.type.length > 1"><span v-for="(type, i) in space.type" :key="i">{{type + ", "}}</span></p>
+                <p class="uppercase" v-else><span>{{space.type[0]}}</span></p>
+                <h1 class="capitalize">{{space.name}}</h1>
+                <h4 class="uppercase location m-t-s"><v-icon class="icon">location_on</v-icon> {{space.info.address}} <span class="m-l"><v-icon class="icon">star</v-icon>4.9</span></h4>
             </v-flex>
         </v-layout>
     </v-container>
 </template>
 <script>
+import Api from '@/services/Api'
+
 export default {
     name: 'SpaceImageSlider',
     data: function(){
-        
+        let data = this.$store.state.selectedSpace
         return{
-            spaceImages: [
-                {
-                    src: 'https://cdn.vuetifyjs.com/images/carousel/squirrel.jpg'
-                },
-                {
-                    src: 'https://cdn.vuetifyjs.com/images/carousel/sky.jpg'
-                },
-                {
-                    src: 'https://cdn.vuetifyjs.com/images/carousel/bird.jpg'
-                },
-                {
-                    src: 'https://cdn.vuetifyjs.com/images/carousel/planet.jpg'
-                }
-            ]
+            space: data
         }
-    }    
+    },
+    methods: {
+        getImage: function(photo){
+            let $obj = new Api()
+            return $obj.base_url+'/'+ photo
+        }
+    }
 }
 </script>
 <style lang="scss">
@@ -61,7 +57,8 @@ export default {
             color: $text-medium;
             .icon{
                 width: fit-content;
-                font-size: 18px;
+                font-size: 20px;
+                margin-bottom: .1rem;
                 margin-right: 5px;
             }
         }

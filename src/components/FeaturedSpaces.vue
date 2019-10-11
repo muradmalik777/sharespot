@@ -6,13 +6,13 @@
                 <h1 class="capitalize">features spaces</h1>
                 <p class="m-b-2">Book from thousands of unique work and meeting spaces</p>
             </v-flex>
-            <v-flex xs12 sm6 md4 lg4 v-for="space in 3" @click="$router.push('/space/' + space)" :key="space" class="m-b pointer">
-                <v-img contain :src="getImage(space)"></v-img>
+            <v-flex xs12 sm6 md4 lg4 v-for="(space, i) in $props.spaces" :key="i" @click="displaySpace(space)" class="m-b pointer">
+                <v-img class="space-image" :src="getImage(space.photos.photos)"></v-img>
                 <v-card flat class="space-details">
-                    <p class="uppercase name m-b-s">space host <span class="f-r"><v-icon class="icon">star</v-icon>4.9</span></p>
-                    <h2 class="capitalize">space host</h2>
-                    <p class="uppercase location m-t-s"><v-icon class="icon">location_on</v-icon> 14 Bedford Square, WC1B 3JA, London</p>
-                    <h4 class="price m-t">£56/day</h4>
+                    <p class="uppercase name m-b-s">{{space.type[0]}} <span class="f-r"><v-icon class="icon">star</v-icon>4.9</span></p>
+                    <h2 class="capitalize">{{space.name}}</h2>
+                    <p class="uppercase location m-t-s"><v-icon class="icon">location_on</v-icon> {{space.info.direction}}</p>
+                    <h4 class="price m-t">{{"£" + space.info.pricePerDay + "/day"}}</h4>
                 </v-card>
             </v-flex>
         </v-layout>
@@ -20,18 +20,25 @@
     </div>
 </template>
 <script>
+import Api from '@/services/Api'
+
 export default {
     name: 'FeaturedSpaces',
-    props: ['home'],
+    props: ['home', 'spaces'],
     data: function(){
         return{
-            spaces: []
+
         }
     },
     methods: {
-        getImage: function(index){
-            return require('../assets/images/space' + (index) + ".jpg")
+        getImage: function(photos){
+            let $obj = new Api()
+            return $obj.base_url+'/'+ photos[0]
         },
+        displaySpace: function(space){
+            this.$store.commit('changeSelectedSpace', space)
+            this.$router.push('/space/'+space._id)
+        }
     }
 }
 </script>
@@ -40,7 +47,10 @@ export default {
 
 .spaces{
     max-width: 1300px;
-
+    .space-image{
+        width: 100%;
+        height: 220px;
+    }
     .space-details{
         padding: 20px;
         border: 1px solid #dddddd;

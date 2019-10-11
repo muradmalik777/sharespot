@@ -7,17 +7,28 @@
             </v-flex>
 
             <v-flex xs12 sm4 md2 lg2>
-                <v-btn flat class="edit-profile-btn capitalize">edit profile information</v-btn>
+                <v-btn flat class="edit-profile-btn capitalize" @click="open">edit profile information</v-btn>
+                <edit :dialog="dialog" @close="close"></edit>
             </v-flex>
         </v-layout>
     </v-container>
 </template>
 <script>
+import ProfileDialog from '@/components/ProfileDialog'
 export default {
     name: 'UserInfo',
+    components: { 'edit': ProfileDialog },
     data: function(){
         return{
-
+            dialog: false,
+        }
+    },
+    methods: {
+        close: function(){
+            this.dialog = false
+        },
+        open: function(){
+            this.dialog = true
         }
     }
 }

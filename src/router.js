@@ -38,13 +38,20 @@ export default new Router({
         { path: '/support', component: Support },
         { path: '/contact', component: Contact },
         { path: '/explore', component: Explore },
-        { path: '/space/:slug?', component: Space },
+        { path: '/space/:id?', component: Space },
         { path: '/dashboard', component: Dashboard, beforeEnter: guard },
         { path: '/share', component: ShareSpace, beforeEnter: guard,
             children: [
                 { path: 'info', component: GeneralInfoForm },
                 { path: 'details', component: DetailsForm },
                 { path: 'photos', component: PhotosForm },
+            ]
+        },
+        {
+            path: '/edit', component: ShareSpace, beforeEnter: guard,
+            children: [
+                { path: 'info', component: GeneralInfoForm },
+                { path: 'details', component: DetailsForm },
             ]
         },
     ]

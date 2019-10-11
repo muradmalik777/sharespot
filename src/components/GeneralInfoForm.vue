@@ -64,7 +64,8 @@
                 <v-text-field prefix="MT" v-model="space.info.VAT" required :rules="nameRules" placeholder="VAT number" background-color="#f1f3f2" solo class="info-input"></v-text-field>
             </v-flex>
             <v-flex xs12 class="text-xs-left">
-                <v-btn flat class="submit" @click="submit">Continue <v-icon>arrow_right_alt</v-icon></v-btn>
+                <v-btn flat class="submit" @click="save" v-if="this.$store.state.editSpace">Save <v-icon>arrow_right_alt</v-icon></v-btn>
+                <v-btn flat class="submit" @click="submit" v-else>Continue <v-icon>arrow_right_alt</v-icon></v-btn>
             </v-flex>
         </v-layout>
         </v-form>
@@ -90,18 +91,25 @@ export default {
         }
     },
     mounted: function(){
-        if(this.$store.state.newSpace && this.$store.state.newSpace.info){
-            this.$router.push('/share/details')
+        if(this.$store.state.editSpace){
+            this.space = this.$store.state.editSpace
         }
     },
     methods: {
         submit: function(){
             if(this.$refs.info.validate()){
                 let $object = new Api('/space/info')
+                this.space.user = this.$store.state.user
                 $object.post(this.space).then(resp => {
                     this.$store.commit('setNewSpace', resp)
                     this.$router.push('/share/details')
                 })
+            }
+        },
+        save: function(){
+            if(this.$refs.info.validate()){
+                this.$store.commit('setEditSpace', this.space)
+                this.$router.push('/share/details')
             }
         }
     }
@@ -166,9 +174,9 @@ export default {
         height: 60px;
         background: $dark-green;
         border: $text-medium;
-        font-weight: 600;
         margin: 2rem 0;
-        color: #555555;
+        color: $dark2;
+        text-transform: capitalize;
         .v-icon{
             font-size: 24px;
             margin-left: 1rem;

@@ -8,7 +8,10 @@ import "./assets/scss/theme.scss"
 import store from './store'
 import Toasted from 'vue-toasted';
 import '@fortawesome/fontawesome-free/css/all.css'
+import VueLazyload from 'vue-lazyload'
 
+
+Vue.use(VueLazyload)
 Vue.use(Toasted);
 Vue.use(Vuetify, {
   iconfont: 'fa'

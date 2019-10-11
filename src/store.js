@@ -10,7 +10,8 @@ export default new Vuex.Store({
         user: {},
         selectedSpace: {},
         loading: false,
-        newSpace: {}
+        newSpace: {},
+        editSpace: {}
     },
     mutations: {
         refreshUser: function (state, user) {
@@ -20,7 +21,13 @@ export default new Vuex.Store({
             state.newSpace = data
         },
         unsetNewSpace: function (state) {
-            state.newSpace = {}
+            state.newSpace = null
+        },
+        setEditSpace: function (state, data) {
+            state.editSpace = data
+        },
+        unsetEditSpace: function (state) {
+            state.editSpace = null
         },
         changeSelectedSpace: function (state, space) {
             state.selectedSpace = space

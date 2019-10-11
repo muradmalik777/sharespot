@@ -35,20 +35,17 @@
       </v-flex>
 
       <v-flex xs4 md2 lg2 class="text-xs-right text-md-right" v-if="$store.state.user">
-        <v-menu offset-y transition="slide-y-transition">
+        <v-menu offset-y transition="slide-y-transition" :min-width="170" class="p-l p-r">
           <template v-slot:activator="{ on }">
             <v-btn v-if="!$vuetify.breakpoint.xs && !$vuetify.breakpoint.sm" flat v-on="on" class="user-menu capitalize"> <v-icon class="m-r">far fa-user</v-icon>{{ $store.state.user.name }}</v-btn>
             <v-btn v-else flat v-on="on" class="user-menu"> <v-icon class="m-r">far fa-user</v-icon></v-btn>
           </template>
           <v-list>
-            <v-list-tile @click="$router.push('/dashboard')">
-              <v-list-tile-title><p><v-icon class="user-icon">fas fa-user-alt</v-icon> Dashboard</p></v-list-tile-title>
-            </v-list-tile>
-            <v-list-tile @click="$router.push('/dashboard')">
-              <v-list-tile-title><p><v-icon class="user-icon">fas fa-lock</v-icon> Chang Password</p></v-list-tile-title>
+            <v-list-tile :to="'/dashboard'">
+              <v-list-tile-title><p class="f-r">My Dashboard</p></v-list-tile-title>
             </v-list-tile>
             <v-list-tile @click="logout">
-              <v-list-tile-title><p><v-icon class="user-icon">fas fa-sign-out-alt</v-icon> Logout</p></v-list-tile-title>
+              <v-list-tile-title><p class="f-r"> Logout</p></v-list-tile-title>
             </v-list-tile>
           </v-list>
         </v-menu>
@@ -134,7 +131,7 @@ export default {
     min-width: fit-content;
     margin-right: 2rem;
     .v-icon {
-      font-size: 18px;
+      font-size: 16px;
     }
   }
   .login-btn,

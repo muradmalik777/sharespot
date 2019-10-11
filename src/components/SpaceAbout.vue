@@ -3,34 +3,38 @@
         <v-layout row wrap>
             <v-flex xs12 md8 lg8>
                 <h2 class="title capitalize">About</h2>
-                <p>The Interchange - Atrium is a brand new, state of the art co-working space in 
-                the heart of Camden's famed Stables Market in North London.
-                "Fast becoming a renowned hub for start ups and established businesses alike, the space boasts 
-                impressive amenities, with a private courtyard, its own restaurant, innovation lab, cafe, bar, and gym. 
-                The Atrium is pushing the boundaries into a new age of providing employees with everything they could ever want."</p>
+                <p>{{space.details.about}}</p>
 
                 <h2 class="title capitalize">Opening Hours</h2>
-                <div class="opening-hours" v-for="item in 4" :key="item">
-                    <p class="capitalize">Weekdays: 8:00 - 18:00</p>
+                <div class="opening-hours">
+                    <p class="capitalize">Weekdays: {{space.details.fromDate.hh}}:{{space.details.fromDate.mm}} {{space.details.fromDate.A}} - {{space.details.toDate.hh}}:{{space.details.toDate.hh}} {{space.details.toDate.A}}</p>
+                </div>
+                <div class="opening-hours" v-if="space.details.saturday">
+                    <p class="capitalize">Saturdays: {{space.details.fromDate.hh}}:{{space.details.fromDate.mm}} {{space.details.fromDate.A}} - {{space.details.toDate.hh}}:{{space.details.toDate.hh}} {{space.details.toDate.A}}</p>
+                </div>
+                <div class="opening-hours" v-if="space.details.sunday">
+                    <p class="capitalize">Sundays: {{space.details.fromDate.hh}}:{{space.details.fromDate.mm}} {{space.details.fromDate.A}} - {{space.details.toDate.hh}}:{{space.details.toDate.hh}} {{space.details.toDate.A}}</p>
                 </div>
                 <h2 class="title capitalize">how to get there</h2>
-                <p>Based in the centre of Camden's Stables Market, The Atrium is easily accessible 
-                    from Camden Town underground (6 minute walk) or Camden Road overground (8 minute walk). 
-                    It takes less than 15 minutes from Euston and 20 minutes from Kings Cross.</p>
-                <h2 class="title capitalize">how to get there</h2>
-                <div class="perks" v-for="item in 8" :key="item">
-                    <p class="capitalize">Printing</p>
+                <p>{{space.info.direction}}</p>
+                <h2 class="title capitalize">Industry</h2>
+                <div class="perks" v-for="(item, i) in space.details.industry" :key="item">
+                    <p class="capitalize">{{item}}</p>
+                </div>
+                <h2 class="title capitalize">Amenities</h2>
+                <div class="perks" v-for="(item, i) in space.details.amenity" :key="item">
+                    <p class="capitalize">{{item}}</p>
                 </div>
             </v-flex>
             <v-flex xs12 md4 lg4>
                 <div class="host-price">
                     <div class="price">
                         <p class="tag m-b-s">Price</p>
-                        <h2>£200/day <span class="month">£4,000/month</span></h2>
+                        <h2>{{"£" + space.info.pricePerDay + "/day"}} <span class="month">{{"£" + space.info.pricePerMonth + "/month"}}</span></h2>
                     </div>
                     <div class="host">
                         <p class="tag m-b-s">Host</p>
-                        <h4>Murad Malik <span><v-icon class="host-icon">call</v-icon><v-icon class="host-icon">chat_bubble_outline</v-icon><v-icon class="host-icon">mail_outline</v-icon></span></h4>
+                        <h4>{{space.user.name}} <span><v-icon class="host-icon">call</v-icon><v-icon class="host-icon">chat_bubble_outline</v-icon><v-icon class="host-icon">mail_outline</v-icon></span></h4>
                     </div>
                     <v-btn flat class="full-width booking">Book Now</v-btn>
                 </div>
@@ -42,10 +46,14 @@
 export default {
     name: 'AboutSpace',
     data: function(){
+        let data = this.$store.state.selectedSpace
         return{
-
+            space: data
         }
-    }    
+    },
+    mounted: function(){
+        
+    }
 }
 </script>
 <style lang="scss">
@@ -57,7 +65,11 @@ export default {
     .title{
         margin: 2rem 0px
     }
-    .opening-hours, .perks{
+    .opening-hours{
+        display: inline-block;
+        width: 32%;
+    }
+    .perks{
         display: inline-block;
         width: 25%;
     }
